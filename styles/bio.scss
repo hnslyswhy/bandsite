@@ -25,7 +25,7 @@
 
   @include mixin.tablet {
     @include mixin.flexbox(row, flex-start, center);
-    padding-left: variables.$pm-base * 8;
+    padding-left: variables.$pm-base * 9;
   }
 }
 
@@ -70,25 +70,35 @@
   @include mixin.flexbox(row, flex-start, center);
 
   @include mixin.tablet {
-    height: 50vh;
-    min-height: 25rem;
+    height: 45vh;
+    min-height: 29rem;
   }
 
   &__title {
     color: variables.$primary-white;
     margin-left: variables.$pm-base * 4;
+    @include mixin.tablet {
+      margin-left: variables.$pm-base * 9;
+    }
   }
 }
 
-/****** main - hero *******/
-.main {
-  width: 100%;
-}
+/****** main - intro *******/
 .introduction {
   width: 100%;
   padding: variables.$pm-base * 4;
   padding-top: 0;
   margin-top: variables.$pm-base * 6;
+
+  @include mixin.tablet {
+    margin-top: variables.$pm-base * 12;
+  }
+
+  .subheader {
+    @include mixin.tablet {
+      @include mixin.section-header;
+    }
+  }
 
   &__img {
     width: 100%;
@@ -99,10 +109,25 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+
+    @include mixin.tablet {
+      width: 80%;
+      height: 30vh;
+      min-height: 18rem;
+      margin: variables.$pm-base * 9 auto;
+    }
   }
 
   &__quote {
     @include mixin.mobil-subheader;
+    @include mixin.tablet {
+      width: 80%;
+      margin: 0 auto;
+      @include mixin.subheader;
+      //    &:nth-of-type(2) {
+      //     @include mixin.text;
+      //    }
+    }
   }
 
   &__info {
