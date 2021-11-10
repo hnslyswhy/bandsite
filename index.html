@@ -8,30 +8,35 @@
     <title>Band Site</title>
   </head>
   <body>
-    <header>
+    <header class="header">
       <a href="./index.html"
-        ><img src="./assets/logos/Logo-bandsite.svg" alt="logo"
+        ><img
+          class="header__logo"
+          src="./assets/logos/Logo-bandsite.svg"
+          alt="logo"
       /></a>
-      <nav>
-        <a href="#">Biography</a>
-        <a href="#">Shows</a>
+      <nav class="nav">
+        <a href="#" class="nav__link nav__active">Biography</a>
+        <a href="#" class="nav__link">Shows</a>
       </nav>
     </header>
-    <main>
+    <main class="main">
       <section class="hero">
-        <h1>The Bees Knees</h1>
+        <h1 class="page-header hero__title">The Bees Knees</h1>
       </section>
       <section class="introduction">
-        <h2>About the Musicians</h2>
-        <img src="./assets/images/band.jpg" alt="band" />
-        <h4>
+        <h2 class="page-header">About the Musicians</h2>
+        <div class="introduction__img"></div>
+        <h4 class="introduction__quote">
           “We push each other to be the best. It’s not uncommon for one of us to
           say ‘this needs to be better, back to the drawing board’”
         </h4>
-        <p>- Bryan Teddy, lead vocalist of The Bees Knees</p>
-        <div>
-          <h3>The Bees Knees</h3>
-          <p>
+        <p class="introduction__quote">
+          - Bryan Teddy, lead vocalist of The Bees Knees
+        </p>
+        <div class="introduction__info">
+          <h3 class="introduction__title">The Bees Knees</h3>
+          <p class="introduction__text">
             The Bees Knees is a pop rock band originating from San Francisco,
             California. The band consists of lead vocalist Bryan Teddy,
             guitarist Mack Tolkens, guitarist Andrew Green, bassist Kent Zulkee
@@ -42,7 +47,7 @@
             could succeed even further, pushing them to sign with Magenta
             Records.
           </p>
-          <p>
+          <p class="introduction__text">
             From there, the band has soared, gaining international recognition
             and ranking in the top 10 on the Poster Charts. New fans immediately
             fell in love with the band’s original and organic attitude,
@@ -56,64 +61,95 @@
         </div>
       </section>
       <section class="photo">
-        <div class="photo-1"></div>
-        <div class="photo-2"></div>
-        <div class="photo-3"></div>
-        <div class="photo-4"></div>
-        <div class="photo-5"></div>
-        <div class="photo-6"></div>
-        <div class="photo-7"></div>
-        <div class="photo-8"></div>
-        <div class="photo-9"></div>
+        <h2 class="page-header">Photo Gallery</h2>
+        <div class="photo__gallery">
+          <div class="photo__img photo1"></div>
+          <div class="photo__img photo2"></div>
+          <div class="photo__img photo3"></div>
+          <div class="photo__img photo4"></div>
+          <div class="photo__img photo5"></div>
+          <div class="photo__img photo6"></div>
+          <div class="photo__img photo7"></div>
+          <div class="photo__img photo8"></div>
+          <div class="photo__img photo9"></div>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <section>
-        <div>
-          <div>
-            <h1>Get in Touch</h1>
-            <div>
-              <a href="https://www.instagram.com"
-                ><img
-                  src="./assets/icons/SVG/Icon-instagram.svg"
-                  alt="instagram"
-              /></a>
-              <a href="https://www.facebook.com"
-                ><img src="./assets/icons/SVG/Icon-facebook.svg" alt="facebook"
-              /></a>
-              <a href="https://www.twitter.com"
-                ><img src="./assets/icons/SVG/Icon-twitter.svg" alt="twitter"
-              /></a>
-            </div>
+    <footer class="footer">
+      <section class="footer__info-container">
+        <div class="footer__info-brand">
+          <h1 class="page-header title">Get in Touch</h1>
+          <div class="footer__info-icons">
+            <a href="https://www.instagram.com"
+              ><img
+                class="footer__info-icon"
+                src="./assets/icons/Icon-instagram.svg"
+                alt="instagram"
+            /></a>
+            <a href="https://www.facebook.com"
+              ><img
+                class="footer__info-icon"
+                src="./assets/icons/Icon-facebook.svg"
+                alt="facebook"
+            /></a>
+            <a href="https://www.twitter.com"
+              ><img
+                class="footer__info-icon"
+                src="./assets/icons/Icon-twitter.svg"
+                alt="twitter"
+            /></a>
           </div>
-          <div>
-            <div>
+          <img
+            class="footer__brand hide"
+            src="./assets/logos/Logo-bandsite.svg"
+            alt="logo"
+          />
+        </div>
+        <div class="footer__contact">
+          <div class="footer__staff-container">
+            <div class="footer__staff">
               <p>Cam Adams</p>
               <p>The Bees Knees Management</p>
+            </div>
+            <div class="footer__location">
               <p>503 Broadway Penthouse,</p>
               <p>New York, NY 10012, USA</p>
-              <p>info@thebeesknees.com</p>
             </div>
-            <div>
+            <p>info@thebeesknees.com</p>
+          </div>
+          <div class="footer__staff-container">
+            <div class="footer__staff">
               <p>Pearl Gregg</p>
               <p>Limitless Artist Group</p>
+            </div>
+            <div class="footer__location">
               <p>Booking Agent for</p>
               <p>US / South America / Japan</p>
-              <p>pearl.gregg@limitlessag.com</p>
             </div>
-            <div>
+            <p>pearl.gregg@limitlessag.com</p>
+          </div>
+          <div class="footer__staff-container">
+            <div class="footer__staff">
               <p>Carson Whyte</p>
               <p>ARCH Entertainment</p>
+            </div>
+            <div class="footer__location">
               <p>Booking Agent for</p>
               <p>UK / EU / AU</p>
-              <p>cwhyte@archentertainment.com</p>
             </div>
+            <p>cwhyte@archentertainment.com</p>
           </div>
         </div>
-        <img src="./assets/logos/Logo-bandsite.svg" alt="logo" />
       </section>
-      <p>Copyright The Bees Knees © 2021 All Rights Reserved</p>
+      <img
+        class="footer__brand"
+        src="./assets/logos/Logo-bandsite.svg"
+        alt="logo"
+      />
+      <p class="footer__copyright">
+        Copyright The Bees Knees © 2021 All Rights Reserved
+      </p>
     </footer>
   </body>
 </html>
