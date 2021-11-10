@@ -85,11 +85,21 @@
     min-height: 29rem;
   }
 
+  @include mixin.desktop {
+    height: 45vh;
+    min-height: 40rem;
+  }
+
   &__title {
     color: variables.$primary-white;
     margin-left: variables.$pm-base * 4;
+
     @include mixin.tablet {
       margin-left: variables.$pm-base * 9;
+    }
+
+    @include mixin.desktop {
+      margin-left: variables.$pm-base * 32;
     }
   }
 }
@@ -102,6 +112,10 @@
   margin-top: variables.$pm-base * 6;
 
   @include mixin.tablet {
+    padding-bottom: variables.$pm-base * 9;
+  }
+
+  @include mixin.desktop {
     margin-top: variables.$pm-base * 12;
   }
 
@@ -121,15 +135,29 @@
       min-height: 18rem;
       margin: variables.$pm-base * 9 auto;
     }
+
+    @include mixin.desktop {
+      width: 68%;
+      height: 32vh;
+      min-height: 28rem;
+      margin: variables.$pm-base * 9 auto;
+    }
   }
 
   &__quote {
     @include mixin.mobil-subheader;
+
     @include mixin.tablet {
       width: 80%;
       margin: 0 auto;
       @include mixin.subheader;
       font-weight: 500;
+    }
+
+    @include mixin.desktop {
+      width: 69%;
+      margin: variables.$pm-base * 9 auto;
+      margin-bottom: 0;
     }
   }
 
@@ -139,6 +167,10 @@
       font-size: 1rem;
       font-weight: 500;
       margin-top: variables.$pm-base * 4;
+    }
+
+    @include mixin.desktop {
+      margin-top: variables.$pm-base * 2;
     }
   }
 
@@ -150,6 +182,11 @@
       width: 80%;
       margin: 0 auto;
     }
+
+    @include mixin.desktop {
+      width: 69%;
+      margin: 0 auto;
+    }
   }
 
   &__title {
@@ -158,6 +195,10 @@
     @include mixin.tablet {
       @include mixin.subheader;
       margin-top: variables.$pm-base * 11;
+    }
+
+    @include mixin.desktop {
+      margin-top: variables.$pm-base * 13;
     }
   }
 
@@ -199,6 +240,12 @@
       @include mixin.flexbox(row, space-between, center);
       flex-wrap: wrap;
     }
+
+    @include mixin.desktop {
+      width: 85%;
+      margin: 0 auto;
+      padding-top: variables.$pm-base * 3;
+    }
   }
 
   &__img {
@@ -214,6 +261,12 @@
       width: 31%;
       height: 10vh;
       min-height: 8rem;
+      margin-top: variables.$pm-base * 6;
+    }
+
+    @include mixin.desktop {
+      height: 12vh;
+      min-height: 11.5rem;
       margin-top: variables.$pm-base * 6;
     }
   }
@@ -251,6 +304,10 @@
   @include mixin.tablet {
     @include mixin.section-header;
   }
+
+  @include mixin.desktop {
+    margin-left: variables.$pm-base * 28;
+  }
 }
 
 /****** footer *******/
@@ -263,6 +320,11 @@
 
   @include mixin.tablet {
     padding: variables.$pm-base * 9;
+    padding-top: variables.$pm-base * 12;
+  }
+
+  @include mixin.desktop {
+    padding: variables.$pm-base * 9 variables.$pm-base * 32;
     padding-top: variables.$pm-base * 12;
   }
 
@@ -295,6 +357,10 @@
 
     @include mixin.tablet {
       margin-left: variables.$pm-base * 4;
+    }
+
+    @include mixin.tablet {
+      margin-left: variables.$pm-base * 9;
     }
   }
 
@@ -341,6 +407,10 @@
       font-weight: 300;
       color: variables.$primary-white;
     }
+
+    @include mixin.desktop {
+      @include mixin.flexbox(row, flex-start, stretch);
+    }
   }
 
   &__staff-container {
@@ -349,6 +419,10 @@
 
     @include mixin.tablet {
       margin-top: variables.$pm-base * 9;
+    }
+
+    @include mixin.desktop {
+      margin-right: variables.$pm-base * 14;
     }
   }
 
