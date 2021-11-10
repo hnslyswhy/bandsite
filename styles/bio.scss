@@ -118,14 +118,17 @@
       width: 80%;
       margin: 0 auto;
       @include mixin.subheader;
-      //    &:nth-of-type(2) {
-      //     @include mixin.text;
-      //    }
+      font-weight: 500;
     }
-    //   .quote-origin {
-    //     @include mixin.tablet {
-    //       font-size: 0.875rem;
-    //     }
+  }
+
+  &__quote-origin {
+    @include mixin.tablet {
+      @include mixin.text;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: variables.$pm-base * 4;
+    }
   }
 
   &__info {
@@ -247,6 +250,11 @@
   background-color: variables.$primary-black;
   @include mixin.flexbox(column, center, flex-start);
 
+  @include mixin.tablet {
+    padding: variables.$pm-base * 9;
+    padding-top: variables.$pm-base * 12;
+  }
+
   &__info-container {
     width: 100%;
     margin-bottom: variables.$pm-base * 10;
@@ -256,13 +264,27 @@
   &__info-brand {
     width: 100%;
     @include mixin.flexbox(column, center, flex-start);
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, flex-start, stretch);
+    }
+
     .title {
       color: variables.$primary-white;
+
+      @include mixin.tablet {
+        @include mixin.section-header;
+        color: variables.$primary-white;
+      }
     }
   }
 
   &__info-icons {
     margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      margin-left: variables.$pm-base * 4;
+    }
   }
 
   &__info-icon {
@@ -285,8 +307,14 @@
     max-width: 7.5rem;
     margin: variables.$pm-base * 4 0;
   }
-  .hide {
+
+  &__brand1 {
     display: none;
+
+    @include mixin.tablet {
+      display: inline;
+      margin-left: auto;
+    }
   }
 
   &__contact {
@@ -294,11 +322,23 @@
     @include mixin.mobil-text;
     font-weight: 300;
     color: variables.$primary-white;
+
+    @include mixin.tablet {
+      width: 100%;
+      @include mixin.flexbox(row, space-between, stretch);
+      @include mixin.footer-text;
+      font-weight: 300;
+      color: variables.$primary-white;
+    }
   }
 
   &__staff-container {
     @include mixin.flexbox(column, center, flex-start);
     margin-top: variables.$pm-base * 6;
+
+    @include mixin.tablet {
+      margin-top: variables.$pm-base * 9;
+    }
   }
 
   &__staff {
@@ -307,10 +347,25 @@
 
   &__location {
     margin: variables.$pm-base * 4 0;
+
+    @include mixin.tablet {
+      margin: variables.$pm-base * 6 0;
+    }
+  }
+
+  &__brand2 {
+    @include mixin.tablet {
+      display: none;
+    }
   }
 
   &__copyright {
     @include mixin.mobil-button;
     color: variables.$primary-white;
+
+    @include mixin.tablet {
+      @include mixin.footer-text;
+      letter-spacing: 0;
+    }
   }
 }

@@ -163,6 +163,19 @@
     font-weight: 600;
     line-height: 2rem;
     font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+@media (min-width: 48rem) {
+  .introduction__quote-origin {
+    font-family: "Avenir";
+    font-weight: 400;
+    line-height: 1.375rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.05rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1rem;
   }
 }
 .introduction__info {
@@ -318,6 +331,12 @@
   justify-content: center;
   align-items: flex-start;
 }
+@media (min-width: 48rem) {
+  .footer {
+    padding: 2.25rem;
+    padding-top: 3rem;
+  }
+}
 .footer__info-container {
   width: 100%;
   margin-bottom: 2.5rem;
@@ -333,11 +352,33 @@
   justify-content: center;
   align-items: flex-start;
 }
+@media (min-width: 48rem) {
+  .footer__info-brand {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+}
 .footer__info-brand .title {
   color: #ffffff;
 }
+@media (min-width: 48rem) {
+  .footer__info-brand .title {
+    font-family: "Avenir";
+    font-weight: 700;
+    line-height: 2.75rem;
+    font-size: 2.25rem;
+    color: #ffffff;
+  }
+}
 .footer__info-icons {
   margin-top: 1rem;
+}
+@media (min-width: 48rem) {
+  .footer__info-icons {
+    margin-left: 1rem;
+  }
 }
 .footer__info-icon {
   margin-right: 2rem;
@@ -357,8 +398,14 @@
   max-width: 7.5rem;
   margin: 1rem 0;
 }
-.footer .hide {
+.footer__brand1 {
   display: none;
+}
+@media (min-width: 48rem) {
+  .footer__brand1 {
+    display: inline;
+    margin-left: auto;
+  }
 }
 .footer__contact {
   display: flex;
@@ -372,6 +419,22 @@
   font-weight: 300;
   color: #ffffff;
 }
+@media (min-width: 48rem) {
+  .footer__contact {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    font-family: "Avenir";
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.05rem;
+    font-weight: 300;
+    color: #ffffff;
+  }
+}
 .footer__staff-container {
   display: flex;
   flex-direction: column;
@@ -379,11 +442,26 @@
   align-items: flex-start;
   margin-top: 1.5rem;
 }
+@media (min-width: 48rem) {
+  .footer__staff-container {
+    margin-top: 2.25rem;
+  }
+}
 .footer__staff {
   font-weight: 500;
 }
 .footer__location {
   margin: 1rem 0;
+}
+@media (min-width: 48rem) {
+  .footer__location {
+    margin: 1.5rem 0;
+  }
+}
+@media (min-width: 48rem) {
+  .footer__brand2 {
+    display: none;
+  }
 }
 .footer__copyright {
   font-family: "Avenir";
@@ -391,4 +469,14 @@
   line-height: 1.25rem;
   font-size: 0.625rem;
   color: #ffffff;
+}
+@media (min-width: 48rem) {
+  .footer__copyright {
+    font-family: "Avenir";
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.05rem;
+    letter-spacing: 0;
+  }
 }/*# sourceMappingURL=bio.css.map */
