@@ -61,10 +61,11 @@
       margin-left: variables.$pm-base * 12;
     }
   }
-
+  &__link:hover,
   &__active {
     color: variables.$primary-white;
     border-bottom: 3px solid variables.$primary-white;
+    font-weight: 700;
   }
 }
 
@@ -74,6 +75,8 @@
   width: 100%;
   height: 30vh;
   min-height: 12rem;
+  background-blend-mode: multiply;
+  background-color: rgba(50, 50, 50, 0.5);
   background-image: url("../assets/images/hero-bio.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -110,6 +113,7 @@
   padding: variables.$pm-base * 4;
   padding-top: 0;
   margin-top: variables.$pm-base * 6;
+  background-color: variables.$primary-white;
 
   @include mixin.tablet {
     padding-bottom: variables.$pm-base * 9;
@@ -347,7 +351,6 @@
 
       @include mixin.tablet {
         @include mixin.section-header;
-        color: variables.$primary-white;
       }
     }
   }
