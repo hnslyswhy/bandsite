@@ -62,7 +62,7 @@
 .hero {
   width: 100%;
   height: 30vh;
-  min-height: 11rem;
+  min-height: 12rem;
   background-image: url("../assets/images/hero-bio.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -94,12 +94,6 @@
     margin-top: variables.$pm-base * 12;
   }
 
-  .subheader {
-    @include mixin.tablet {
-      @include mixin.section-header;
-    }
-  }
-
   &__img {
     width: 100%;
     height: 26vh;
@@ -128,20 +122,46 @@
       //     @include mixin.text;
       //    }
     }
+    //   .quote-origin {
+    //     @include mixin.tablet {
+    //       font-size: 0.875rem;
+    //     }
   }
 
   &__info {
     @include mixin.flexbox(column, center, flex-start);
     margin-top: variables.$pm-base * 6;
+
+    @include mixin.tablet {
+      width: 80%;
+      margin: 0 auto;
+    }
   }
 
   &__title {
     @include mixin.mobil-subheader;
+
+    @include mixin.tablet {
+      @include mixin.subheader;
+      margin-top: variables.$pm-base * 11;
+    }
+  }
+
+  &__content {
+    @include mixin.tablet {
+      @include mixin.flexbox(row, space-between, stretch);
+    }
   }
 
   &__text {
     @include mixin.mobil-text;
     margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      @include mixin.text;
+      margin-top: variables.$pm-base * 6;
+      width: 48%;
+    }
   }
 }
 
@@ -153,9 +173,18 @@
   padding-top: variables.$pm-base * 6;
   background-color: variables.$secondary-white;
 
+  @include mixin.tablet {
+    padding: variables.$pm-base * 9;
+  }
+
   &__gallery {
     width: 100%;
     @include mixin.flexbox(column, center, flex-start);
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, space-between, center);
+      flex-wrap: wrap;
+    }
   }
 
   &__img {
@@ -166,6 +195,13 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+
+    @include mixin.tablet {
+      width: 31%;
+      height: 10vh;
+      min-height: 8rem;
+      margin-top: variables.$pm-base * 6;
+    }
   }
 
   .photo1 {
@@ -194,6 +230,12 @@
   }
   .photo9 {
     background-image: url("../assets/images/Photo-gallery-9.jpg");
+  }
+}
+
+.subheader {
+  @include mixin.tablet {
+    @include mixin.section-header;
   }
 }
 
