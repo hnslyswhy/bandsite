@@ -261,6 +261,10 @@
     background-position: center;
     background-size: cover;
 
+    &:hover {
+      filter: grayscale(90%);
+    }
+
     @include mixin.tablet {
       width: 31%;
       height: 10vh;
@@ -439,6 +443,10 @@
     @include mixin.tablet {
       margin: variables.$pm-base * 6 0;
     }
+  }
+
+  &__email {
+    color: variables.$primary-white;
   }
 
   &__brand2 {

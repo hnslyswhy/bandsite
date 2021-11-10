@@ -345,6 +345,9 @@
   background-position: center;
   background-size: cover;
 }
+.photo__img:hover {
+  filter: grayscale(90%);
+}
 @media (min-width: 48rem) {
   .photo__img {
     width: 31%;
@@ -562,6 +565,9 @@
   .footer__location {
     margin: 1.5rem 0;
   }
+}
+.footer__email {
+  color: #ffffff;
 }
 @media (min-width: 48rem) {
   .footer__brand2 {
