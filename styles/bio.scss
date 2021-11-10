@@ -1,0 +1,459 @@
+@use "./partials/mixin";
+@use "./partials/variables";
+@use "./partials/global";
+
+/****** general texts *******/
+.page-header {
+  @include mixin.mobil-header;
+
+  @include mixin.tablet {
+    @include mixin.page-header;
+  }
+}
+
+/****** header & nav *******/
+.header {
+  background-color: variables.$primary-black;
+  padding-top: variables.$pm-base * 4;
+  @include mixin.flexbox(column, center, center);
+
+  @include mixin.tablet {
+    @include mixin.flexbox(row, flex-start, center);
+    padding-left: variables.$pm-base * 9;
+  }
+
+  @include mixin.desktop {
+    padding-left: variables.$pm-base * 32;
+    padding-top: variables.$pm-base * 6;
+  }
+
+  &__logo {
+    width: 100%;
+    max-height: 1.25rem;
+    max-width: 7.5rem;
+    margin-bottom: variables.$pm-base * 2;
+  }
+}
+
+.nav {
+  width: 100%;
+  padding-top: variables.$pm-base * 2;
+  @include mixin.flexbox(row, center, center);
+  @include mixin.tablet {
+    width: fit-content;
+  }
+
+  &__link {
+    @include mixin.mobil-subheader;
+    color: variables.$primary-Silver;
+    width: 50%;
+    text-align: center;
+    padding-bottom: variables.$pm-base * 2;
+
+    @include mixin.tablet {
+      width: fit-content;
+      padding-bottom: variables.$pm-base * 4;
+      margin-left: variables.$pm-base * 16;
+    }
+
+    @include mixin.desktop {
+      padding-bottom: variables.$pm-base * 6;
+      margin-left: variables.$pm-base * 12;
+    }
+  }
+  &__link:hover,
+  &__active {
+    color: variables.$primary-white;
+    border-bottom: 3px solid variables.$primary-white;
+    font-weight: 700;
+  }
+}
+
+/****** main - hero *******/
+
+.hero {
+  width: 100%;
+  height: 30vh;
+  min-height: 12rem;
+  background-blend-mode: multiply;
+  background-color: rgba(50, 50, 50, 0.5);
+  background-image: url("../assets/images/hero-bio.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @include mixin.flexbox(row, flex-start, center);
+
+  @include mixin.tablet {
+    height: 45vh;
+    min-height: 29rem;
+  }
+
+  @include mixin.desktop {
+    height: 45vh;
+    min-height: 40rem;
+  }
+
+  &__title {
+    color: variables.$primary-white;
+    margin-left: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      margin-left: variables.$pm-base * 9;
+    }
+
+    @include mixin.desktop {
+      margin-left: variables.$pm-base * 32;
+    }
+  }
+}
+
+/****** main - intro *******/
+.introduction {
+  width: 100%;
+  padding: variables.$pm-base * 4;
+  padding-top: 0;
+  margin-top: variables.$pm-base * 6;
+  background-color: variables.$primary-white;
+
+  @include mixin.tablet {
+    padding-bottom: variables.$pm-base * 9;
+  }
+
+  @include mixin.desktop {
+    margin-top: variables.$pm-base * 12;
+  }
+
+  &__img {
+    width: 100%;
+    height: 26vh;
+    min-height: 9rem;
+    margin: variables.$pm-base * 4 0;
+    background-image: url("../assets/images/band.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include mixin.tablet {
+      width: 80%;
+      height: 30vh;
+      min-height: 18rem;
+      margin: variables.$pm-base * 9 auto;
+    }
+
+    @include mixin.desktop {
+      width: 68%;
+      height: 32vh;
+      min-height: 28rem;
+      margin: variables.$pm-base * 9 auto;
+    }
+  }
+
+  &__quote {
+    @include mixin.mobil-subheader;
+
+    @include mixin.tablet {
+      width: 80%;
+      margin: 0 auto;
+      @include mixin.subheader;
+      font-weight: 500;
+    }
+
+    @include mixin.desktop {
+      width: 69%;
+      margin: variables.$pm-base * 9 auto;
+      margin-bottom: 0;
+    }
+  }
+
+  &__quote-origin {
+    @include mixin.tablet {
+      @include mixin.text;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: variables.$pm-base * 4;
+    }
+
+    @include mixin.desktop {
+      margin-top: variables.$pm-base * 2;
+    }
+  }
+
+  &__info {
+    @include mixin.flexbox(column, center, flex-start);
+    margin-top: variables.$pm-base * 6;
+
+    @include mixin.tablet {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    @include mixin.desktop {
+      width: 69%;
+      margin: 0 auto;
+    }
+  }
+
+  &__title {
+    @include mixin.mobil-subheader;
+
+    @include mixin.tablet {
+      @include mixin.subheader;
+      margin-top: variables.$pm-base * 11;
+    }
+
+    @include mixin.desktop {
+      margin-top: variables.$pm-base * 13;
+    }
+  }
+
+  &__content {
+    @include mixin.tablet {
+      @include mixin.flexbox(row, space-between, stretch);
+    }
+  }
+
+  &__text {
+    @include mixin.mobil-text;
+    margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      @include mixin.text;
+      margin-top: variables.$pm-base * 6;
+      width: 48%;
+    }
+  }
+}
+
+/****** main - photo *******/
+.photo {
+  width: 100%;
+  @include mixin.flexbox(column, center, flex-start);
+  padding: variables.$pm-base * 4;
+  padding-top: variables.$pm-base * 6;
+  background-color: variables.$secondary-white;
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 9;
+  }
+
+  &__gallery {
+    width: 100%;
+    @include mixin.flexbox(column, center, flex-start);
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, space-between, center);
+      flex-wrap: wrap;
+    }
+
+    @include mixin.desktop {
+      width: 85%;
+      margin: 0 auto;
+      padding-top: variables.$pm-base * 3;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 24vh;
+    min-height: 10rem;
+    margin-top: variables.$pm-base * 4;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include mixin.tablet {
+      width: 31%;
+      height: 10vh;
+      min-height: 8rem;
+      margin-top: variables.$pm-base * 6;
+    }
+
+    @include mixin.desktop {
+      height: 12vh;
+      min-height: 11.5rem;
+      margin-top: variables.$pm-base * 6;
+    }
+  }
+
+  .photo1 {
+    background-image: url("../assets/images/Photo-gallery-1.jpg");
+  }
+  .photo2 {
+    background-image: url("../assets/images/Photo-gallery-2.jpg");
+  }
+  .photo3 {
+    background-image: url("../assets/images/Photo-gallery-3.jpg");
+  }
+  .photo4 {
+    background-image: url("../assets/images/Photo-gallery-4.jpg");
+  }
+  .photo5 {
+    background-image: url("../assets/images/Photo-gallery-5.jpg");
+  }
+  .photo6 {
+    background-image: url("../assets/images/Photo-gallery-6.jpg");
+  }
+  .photo7 {
+    background-image: url("../assets/images/Photo-gallery-7.jpg");
+  }
+  .photo8 {
+    background-image: url("../assets/images/Photo-gallery-8.jpg");
+  }
+  .photo9 {
+    background-image: url("../assets/images/Photo-gallery-9.jpg");
+  }
+}
+
+.subheader {
+  @include mixin.tablet {
+    @include mixin.section-header;
+  }
+
+  @include mixin.desktop {
+    margin-left: variables.$pm-base * 28;
+  }
+}
+
+/****** footer *******/
+.footer {
+  width: 100%;
+  padding: variables.$pm-base * 4;
+  padding-top: variables.$pm-base * 6;
+  background-color: variables.$primary-black;
+  @include mixin.flexbox(column, center, flex-start);
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 9;
+    padding-top: variables.$pm-base * 12;
+  }
+
+  @include mixin.desktop {
+    padding: variables.$pm-base * 9 variables.$pm-base * 32;
+    padding-top: variables.$pm-base * 12;
+  }
+
+  &__info-container {
+    width: 100%;
+    margin-bottom: variables.$pm-base * 10;
+    @include mixin.flexbox(column, center, flex-start);
+  }
+
+  &__info-brand {
+    width: 100%;
+    @include mixin.flexbox(column, center, flex-start);
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, flex-start, stretch);
+    }
+
+    .title {
+      color: variables.$primary-white;
+
+      @include mixin.tablet {
+        @include mixin.section-header;
+      }
+    }
+  }
+
+  &__info-icons {
+    margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      margin-left: variables.$pm-base * 4;
+    }
+
+    @include mixin.tablet {
+      margin-left: variables.$pm-base * 9;
+    }
+  }
+
+  &__info-icon {
+    margin-right: variables.$pm-base * 8;
+  }
+
+  .photo1 {
+    background-image: url("../assets/images/Photo-gallery-1.jpg");
+  }
+  .photo2 {
+    background-image: url("../assets/images/Photo-gallery-2.jpg");
+  }
+  .photo3 {
+    background-image: url("../assets/images/Photo-gallery-3.jpg");
+  }
+
+  &__brand {
+    width: 35%;
+    max-height: 1.25rem;
+    max-width: 7.5rem;
+    margin: variables.$pm-base * 4 0;
+  }
+
+  &__brand1 {
+    display: none;
+
+    @include mixin.tablet {
+      display: inline;
+      margin-left: auto;
+    }
+  }
+
+  &__contact {
+    @include mixin.flexbox(column, center, flex-start);
+    @include mixin.mobil-text;
+    font-weight: 300;
+    color: variables.$primary-white;
+
+    @include mixin.tablet {
+      width: 100%;
+      @include mixin.flexbox(row, space-between, stretch);
+      @include mixin.footer-text;
+      font-weight: 300;
+      color: variables.$primary-white;
+    }
+
+    @include mixin.desktop {
+      @include mixin.flexbox(row, flex-start, stretch);
+    }
+  }
+
+  &__staff-container {
+    @include mixin.flexbox(column, center, flex-start);
+    margin-top: variables.$pm-base * 6;
+
+    @include mixin.tablet {
+      margin-top: variables.$pm-base * 9;
+    }
+
+    @include mixin.desktop {
+      margin-right: variables.$pm-base * 14;
+    }
+  }
+
+  &__staff {
+    font-weight: 500;
+  }
+
+  &__location {
+    margin: variables.$pm-base * 4 0;
+
+    @include mixin.tablet {
+      margin: variables.$pm-base * 6 0;
+    }
+  }
+
+  &__brand2 {
+    @include mixin.tablet {
+      display: none;
+    }
+  }
+
+  &__copyright {
+    @include mixin.mobil-button;
+    color: variables.$primary-white;
+
+    @include mixin.tablet {
+      @include mixin.footer-text;
+      letter-spacing: 0;
+    }
+  }
+}
