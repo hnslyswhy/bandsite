@@ -2,15 +2,6 @@
 @use "./partials/variables";
 @use "./partials/global";
 
-/****** general texts *******/
-.page-header {
-  @include mixin.mobil-header;
-
-  @include mixin.tablet {
-    @include mixin.page-header;
-  }
-}
-
 /****** header & nav *******/
 .header {
   background-color: variables.$primary-black;
@@ -61,8 +52,9 @@
       margin-left: variables.$pm-base * 12;
     }
   }
+
   &__link:hover,
-  &__active {
+  &__link--active {
     color: variables.$primary-white;
     border-bottom: 3px solid variables.$primary-white;
     font-weight: 700;
@@ -70,7 +62,6 @@
 }
 
 /****** main - hero *******/
-
 .hero {
   width: 100%;
   height: 30vh;
@@ -94,10 +85,12 @@
   }
 
   &__title {
+    @include mixin.mobil-header;
     color: variables.$primary-white;
     margin-left: variables.$pm-base * 4;
 
     @include mixin.tablet {
+      @include mixin.page-header;
       margin-left: variables.$pm-base * 9;
     }
 
@@ -117,10 +110,24 @@
 
   @include mixin.tablet {
     padding-bottom: variables.$pm-base * 9;
+    margin-top: variables.$pm-base * 12;
   }
 
   @include mixin.desktop {
     margin-top: variables.$pm-base * 12;
+  }
+
+  &__subheader {
+    @include mixin.mobil-header;
+
+    @include mixin.tablet {
+      @include mixin.section-header;
+      margin-left: variables.$pm-base * 6;
+    }
+
+    @include mixin.desktop {
+      margin-left: variables.$pm-base * 32;
+    }
   }
 
   &__img {
@@ -163,18 +170,14 @@
       margin: variables.$pm-base * 9 auto;
       margin-bottom: 0;
     }
-  }
 
-  &__quote-origin {
-    @include mixin.tablet {
-      @include mixin.text;
-      font-size: 1rem;
-      font-weight: 500;
-      margin-top: variables.$pm-base * 4;
-    }
-
-    @include mixin.desktop {
-      margin-top: variables.$pm-base * 2;
+    &--origin {
+      @include mixin.tablet {
+        @include mixin.text;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-top: variables.$pm-base * 4;
+      }
     }
   }
 
@@ -234,6 +237,21 @@
 
   @include mixin.tablet {
     padding: variables.$pm-base * 9;
+  }
+
+  @include mixin.desktop {
+    padding-top: variables.$pm-base * 14;
+  }
+
+  &__subheader {
+    @include mixin.mobil-header;
+    @include mixin.tablet {
+      @include mixin.section-header;
+    }
+
+    @include mixin.desktop {
+      margin-left: variables.$pm-base * 24;
+    }
   }
 
   &__gallery {
@@ -308,16 +326,6 @@
   }
 }
 
-.subheader {
-  @include mixin.tablet {
-    @include mixin.section-header;
-  }
-
-  @include mixin.desktop {
-    margin-left: variables.$pm-base * 28;
-  }
-}
-
 /****** footer *******/
 .footer {
   width: 100%;
@@ -349,13 +357,14 @@
     @include mixin.tablet {
       @include mixin.flexbox(row, flex-start, stretch);
     }
+  }
 
-    .title {
-      color: variables.$primary-white;
+  &__title {
+    @include mixin.mobil-header;
+    color: variables.$primary-white;
 
-      @include mixin.tablet {
-        @include mixin.section-header;
-      }
+    @include mixin.tablet {
+      @include mixin.section-header;
     }
   }
 
@@ -390,14 +399,20 @@
     max-height: 1.25rem;
     max-width: 7.5rem;
     margin: variables.$pm-base * 4 0;
-  }
 
-  &__brand1 {
-    display: none;
+    &--display {
+      display: none;
 
-    @include mixin.tablet {
-      display: inline;
-      margin-left: auto;
+      @include mixin.tablet {
+        display: inline;
+        margin-left: auto;
+      }
+    }
+
+    &--display2 {
+      @include mixin.tablet {
+        display: none;
+      }
     }
   }
 
@@ -447,12 +462,6 @@
 
   &__email {
     color: variables.$primary-white;
-  }
-
-  &__brand2 {
-    @include mixin.tablet {
-      display: none;
-    }
   }
 
   &__copyright {

@@ -5,24 +5,6 @@
   text-decoration: none;
 }
 
-/****** general texts *******/
-.page-header {
-  font-family: "Avenir";
-  font-weight: 700;
-  line-height: 2rem;
-  font-size: 1.5rem;
-  letter-spacing: 0.05rem;
-}
-@media (min-width: 48rem) {
-  .page-header {
-    font-family: "Avenir";
-    font-weight: 700;
-    line-height: 4.25rem;
-    font-size: 3.75rem;
-    letter-spacing: 0.1rem;
-  }
-}
-
 /****** header & nav *******/
 .header {
   background-color: #323232;
@@ -95,7 +77,7 @@
     margin-left: 3rem;
   }
 }
-.nav__link:hover, .nav__active {
+.nav__link:hover, .nav__link--active {
   color: #ffffff;
   border-bottom: 3px solid #ffffff;
   font-weight: 700;
@@ -130,11 +112,21 @@
   }
 }
 .hero__title {
+  font-family: "Avenir";
+  font-weight: 700;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
   color: #ffffff;
   margin-left: 1rem;
 }
 @media (min-width: 48rem) {
   .hero__title {
+    font-family: "Avenir";
+    font-weight: 700;
+    line-height: 4.25rem;
+    font-size: 3.75rem;
+    letter-spacing: 0.1rem;
     margin-left: 2.25rem;
   }
 }
@@ -155,11 +147,33 @@
 @media (min-width: 48rem) {
   .introduction {
     padding-bottom: 2.25rem;
+    margin-top: 3rem;
   }
 }
 @media (min-width: 80rem) {
   .introduction {
     margin-top: 3rem;
+  }
+}
+.introduction__subheader {
+  font-family: "Avenir";
+  font-weight: 700;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+}
+@media (min-width: 48rem) {
+  .introduction__subheader {
+    font-family: "Avenir";
+    font-weight: 700;
+    line-height: 2.75rem;
+    font-size: 2.25rem;
+    margin-left: 1.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .introduction__subheader {
+    margin-left: 8rem;
   }
 }
 .introduction__img {
@@ -214,7 +228,7 @@
   }
 }
 @media (min-width: 48rem) {
-  .introduction__quote-origin {
+  .introduction__quote--origin {
     font-family: "Avenir";
     font-weight: 400;
     line-height: 1.375rem;
@@ -223,11 +237,6 @@
     font-size: 1rem;
     font-weight: 500;
     margin-top: 1rem;
-  }
-}
-@media (min-width: 80rem) {
-  .introduction__quote-origin {
-    margin-top: 0.5rem;
   }
 }
 .introduction__info {
@@ -313,6 +322,31 @@
     padding: 2.25rem;
   }
 }
+@media (min-width: 80rem) {
+  .photo {
+    padding-top: 3.5rem;
+  }
+}
+.photo__subheader {
+  font-family: "Avenir";
+  font-weight: 700;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+}
+@media (min-width: 48rem) {
+  .photo__subheader {
+    font-family: "Avenir";
+    font-weight: 700;
+    line-height: 2.75rem;
+    font-size: 2.25rem;
+  }
+}
+@media (min-width: 80rem) {
+  .photo__subheader {
+    margin-left: 6rem;
+  }
+}
 .photo__gallery {
   width: 100%;
   display: flex;
@@ -391,20 +425,6 @@
   background-image: url("../assets/images/Photo-gallery-9.jpg");
 }
 
-@media (min-width: 48rem) {
-  .subheader {
-    font-family: "Avenir";
-    font-weight: 700;
-    line-height: 2.75rem;
-    font-size: 2.25rem;
-  }
-}
-@media (min-width: 80rem) {
-  .subheader {
-    margin-left: 7rem;
-  }
-}
-
 /****** footer *******/
 .footer {
   width: 100%;
@@ -451,11 +471,16 @@
     align-items: stretch;
   }
 }
-.footer__info-brand .title {
+.footer__title {
+  font-family: "Avenir";
+  font-weight: 700;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
   color: #ffffff;
 }
 @media (min-width: 48rem) {
-  .footer__info-brand .title {
+  .footer__title {
     font-family: "Avenir";
     font-weight: 700;
     line-height: 2.75rem;
@@ -493,13 +518,18 @@
   max-width: 7.5rem;
   margin: 1rem 0;
 }
-.footer__brand1 {
+.footer__brand--display {
   display: none;
 }
 @media (min-width: 48rem) {
-  .footer__brand1 {
+  .footer__brand--display {
     display: inline;
     margin-left: auto;
+  }
+}
+@media (min-width: 48rem) {
+  .footer__brand--display2 {
+    display: none;
   }
 }
 .footer__contact {
@@ -568,11 +598,6 @@
 }
 .footer__email {
   color: #ffffff;
-}
-@media (min-width: 48rem) {
-  .footer__brand2 {
-    display: none;
-  }
 }
 .footer__copyright {
   font-family: "Avenir";
