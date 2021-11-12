@@ -5,7 +5,7 @@
   text-decoration: none;
 }
 
-/****** header & nav *******/
+/****** header  *******/
 .header {
   background-color: #323232;
   padding-top: 1rem;
@@ -33,9 +33,10 @@
   width: 100%;
   max-height: 1.25rem;
   max-width: 7.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
+/****** nav *******/
 .nav {
   width: 100%;
   padding-top: 0.5rem;
@@ -80,7 +81,6 @@
 .nav__link:hover, .nav__link--active {
   color: #ffffff;
   border-bottom: 3px solid #ffffff;
-  font-weight: 700;
 }
 
 /****** main - hero *******/
@@ -161,6 +161,7 @@
   line-height: 2rem;
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
+  color: #323232;
 }
 @media (min-width: 48rem) {
   .introduction__subheader {
@@ -208,6 +209,7 @@
   line-height: 1.375rem;
   font-size: 0.875rem;
   letter-spacing: 0.01rem;
+  color: #323232;
 }
 @media (min-width: 48rem) {
   .introduction__quote {
@@ -264,6 +266,8 @@
   line-height: 1.375rem;
   font-size: 0.875rem;
   letter-spacing: 0.01rem;
+  font-weight: 500;
+  color: #323232;
 }
 @media (min-width: 48rem) {
   .introduction__title {
@@ -292,6 +296,7 @@
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
+  color: #323232;
   margin-top: 1rem;
 }
 @media (min-width: 48rem) {
@@ -333,6 +338,7 @@
   line-height: 2rem;
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
+  color: #323232;
 }
 @media (min-width: 48rem) {
   .photo__subheader {
@@ -379,6 +385,33 @@
   background-position: center;
   background-size: cover;
 }
+.photo__img--photo1 {
+  background-image: url("../assets/images/Photo-gallery-1.jpg");
+}
+.photo__img--photo2 {
+  background-image: url("../assets/images/Photo-gallery-2.jpg");
+}
+.photo__img--photo3 {
+  background-image: url("../assets/images/Photo-gallery-3.jpg");
+}
+.photo__img--photo4 {
+  background-image: url("../assets/images/Photo-gallery-4.jpg");
+}
+.photo__img--photo5 {
+  background-image: url("../assets/images/Photo-gallery-5.jpg");
+}
+.photo__img--photo6 {
+  background-image: url("../assets/images/Photo-gallery-6.jpg");
+}
+.photo__img--photo7 {
+  background-image: url("../assets/images/Photo-gallery-7.jpg");
+}
+.photo__img--photo8 {
+  background-image: url("../assets/images/Photo-gallery-8.jpg");
+}
+.photo__img--photo9 {
+  background-image: url("../assets/images/Photo-gallery-9.jpg");
+}
 .photo__img:hover {
   filter: grayscale(90%);
 }
@@ -396,33 +429,6 @@
     min-height: 11.5rem;
     margin-top: 1.5rem;
   }
-}
-.photo .photo1 {
-  background-image: url("../assets/images/Photo-gallery-1.jpg");
-}
-.photo .photo2 {
-  background-image: url("../assets/images/Photo-gallery-2.jpg");
-}
-.photo .photo3 {
-  background-image: url("../assets/images/Photo-gallery-3.jpg");
-}
-.photo .photo4 {
-  background-image: url("../assets/images/Photo-gallery-4.jpg");
-}
-.photo .photo5 {
-  background-image: url("../assets/images/Photo-gallery-5.jpg");
-}
-.photo .photo6 {
-  background-image: url("../assets/images/Photo-gallery-6.jpg");
-}
-.photo .photo7 {
-  background-image: url("../assets/images/Photo-gallery-7.jpg");
-}
-.photo .photo8 {
-  background-image: url("../assets/images/Photo-gallery-8.jpg");
-}
-.photo .photo9 {
-  background-image: url("../assets/images/Photo-gallery-9.jpg");
 }
 
 /****** footer *******/
@@ -503,26 +509,17 @@
 .footer__info-icon {
   margin-right: 2rem;
 }
-.footer .photo1 {
-  background-image: url("../assets/images/Photo-gallery-1.jpg");
-}
-.footer .photo2 {
-  background-image: url("../assets/images/Photo-gallery-2.jpg");
-}
-.footer .photo3 {
-  background-image: url("../assets/images/Photo-gallery-3.jpg");
-}
 .footer__brand {
   width: 35%;
   max-height: 1.25rem;
   max-width: 7.5rem;
   margin: 1rem 0;
 }
-.footer__brand--display {
+.footer__brand--display1 {
   display: none;
 }
 @media (min-width: 48rem) {
-  .footer__brand--display {
+  .footer__brand--display1 {
     display: inline;
     margin-left: auto;
   }
@@ -541,7 +538,6 @@
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
-  font-weight: 300;
   color: #ffffff;
 }
 @media (min-width: 48rem) {
@@ -556,7 +552,6 @@
     font-size: 0.875rem;
     line-height: 1.25rem;
     letter-spacing: 0.05rem;
-    font-weight: 300;
     color: #ffffff;
   }
 }
@@ -604,6 +599,7 @@
   font-weight: 700;
   line-height: 1.25rem;
   font-size: 0.625rem;
+  font-weight: 400;
   color: #ffffff;
 }
 @media (min-width: 48rem) {

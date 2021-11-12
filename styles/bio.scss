@@ -2,7 +2,7 @@
 @use "./partials/variables";
 @use "./partials/global";
 
-/****** header & nav *******/
+/****** header  *******/
 .header {
   background-color: variables.$primary-black;
   padding-top: variables.$pm-base * 4;
@@ -22,10 +22,11 @@
     width: 100%;
     max-height: 1.25rem;
     max-width: 7.5rem;
-    margin-bottom: variables.$pm-base * 2;
+    margin-bottom: variables.$pm-base * 4;
   }
 }
 
+/****** nav *******/
 .nav {
   width: 100%;
   padding-top: variables.$pm-base * 2;
@@ -57,7 +58,6 @@
   &__link--active {
     color: variables.$primary-white;
     border-bottom: 3px solid variables.$primary-white;
-    font-weight: 700;
   }
 }
 
@@ -119,6 +119,7 @@
 
   &__subheader {
     @include mixin.mobil-header;
+    color: variables.$primary-black;
 
     @include mixin.tablet {
       @include mixin.section-header;
@@ -157,6 +158,7 @@
 
   &__quote {
     @include mixin.mobil-subheader;
+    color: variables.$primary-black;
 
     @include mixin.tablet {
       width: 80%;
@@ -198,6 +200,8 @@
 
   &__title {
     @include mixin.mobil-subheader;
+    font-weight: 500;
+    color: variables.$primary-black;
 
     @include mixin.tablet {
       @include mixin.subheader;
@@ -217,6 +221,7 @@
 
   &__text {
     @include mixin.mobil-text;
+    color: variables.$primary-black;
     margin-top: variables.$pm-base * 4;
 
     @include mixin.tablet {
@@ -245,6 +250,8 @@
 
   &__subheader {
     @include mixin.mobil-header;
+    color: variables.$primary-black;
+
     @include mixin.tablet {
       @include mixin.section-header;
     }
@@ -279,6 +286,34 @@
     background-position: center;
     background-size: cover;
 
+    &--photo1 {
+      background-image: url("../assets/images/Photo-gallery-1.jpg");
+    }
+    &--photo2 {
+      background-image: url("../assets/images/Photo-gallery-2.jpg");
+    }
+    &--photo3 {
+      background-image: url("../assets/images/Photo-gallery-3.jpg");
+    }
+    &--photo4 {
+      background-image: url("../assets/images/Photo-gallery-4.jpg");
+    }
+    &--photo5 {
+      background-image: url("../assets/images/Photo-gallery-5.jpg");
+    }
+    &--photo6 {
+      background-image: url("../assets/images/Photo-gallery-6.jpg");
+    }
+    &--photo7 {
+      background-image: url("../assets/images/Photo-gallery-7.jpg");
+    }
+    &--photo8 {
+      background-image: url("../assets/images/Photo-gallery-8.jpg");
+    }
+    &--photo9 {
+      background-image: url("../assets/images/Photo-gallery-9.jpg");
+    }
+
     &:hover {
       filter: grayscale(90%);
     }
@@ -295,34 +330,6 @@
       min-height: 11.5rem;
       margin-top: variables.$pm-base * 6;
     }
-  }
-
-  .photo1 {
-    background-image: url("../assets/images/Photo-gallery-1.jpg");
-  }
-  .photo2 {
-    background-image: url("../assets/images/Photo-gallery-2.jpg");
-  }
-  .photo3 {
-    background-image: url("../assets/images/Photo-gallery-3.jpg");
-  }
-  .photo4 {
-    background-image: url("../assets/images/Photo-gallery-4.jpg");
-  }
-  .photo5 {
-    background-image: url("../assets/images/Photo-gallery-5.jpg");
-  }
-  .photo6 {
-    background-image: url("../assets/images/Photo-gallery-6.jpg");
-  }
-  .photo7 {
-    background-image: url("../assets/images/Photo-gallery-7.jpg");
-  }
-  .photo8 {
-    background-image: url("../assets/images/Photo-gallery-8.jpg");
-  }
-  .photo9 {
-    background-image: url("../assets/images/Photo-gallery-9.jpg");
   }
 }
 
@@ -384,23 +391,13 @@
     margin-right: variables.$pm-base * 8;
   }
 
-  .photo1 {
-    background-image: url("../assets/images/Photo-gallery-1.jpg");
-  }
-  .photo2 {
-    background-image: url("../assets/images/Photo-gallery-2.jpg");
-  }
-  .photo3 {
-    background-image: url("../assets/images/Photo-gallery-3.jpg");
-  }
-
   &__brand {
     width: 35%;
     max-height: 1.25rem;
     max-width: 7.5rem;
     margin: variables.$pm-base * 4 0;
 
-    &--display {
+    &--display1 {
       display: none;
 
       @include mixin.tablet {
@@ -419,14 +416,12 @@
   &__contact {
     @include mixin.flexbox(column, center, flex-start);
     @include mixin.mobil-text;
-    font-weight: 300;
     color: variables.$primary-white;
 
     @include mixin.tablet {
       width: 100%;
       @include mixin.flexbox(row, space-between, stretch);
       @include mixin.footer-text;
-      font-weight: 300;
       color: variables.$primary-white;
     }
 
@@ -466,6 +461,7 @@
 
   &__copyright {
     @include mixin.mobil-button;
+    font-weight: 400;
     color: variables.$primary-white;
 
     @include mixin.tablet {
