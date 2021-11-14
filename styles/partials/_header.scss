@@ -1,0 +1,61 @@
+@use "./mixin";
+@use "./variables";
+
+/****** header  *******/
+.header {
+  background-color: variables.$primary-black;
+  padding-top: variables.$pm-base * 4;
+  @include mixin.flexbox(column, center, center);
+
+  @include mixin.tablet {
+    @include mixin.flexbox(row, flex-start, center);
+    padding-left: variables.$pm-base * 9;
+  }
+
+  @include mixin.desktop {
+    padding-left: variables.$pm-base * 32;
+    padding-top: variables.$pm-base * 6;
+  }
+
+  &__logo {
+    width: 100%;
+    max-height: 1.25rem;
+    max-width: 7.5rem;
+    margin-bottom: variables.$pm-base * 4;
+  }
+}
+
+/****** nav *******/
+.nav {
+  width: 100%;
+  padding-top: variables.$pm-base * 2;
+  @include mixin.flexbox(row, center, center);
+  @include mixin.tablet {
+    width: fit-content;
+  }
+
+  &__link {
+    @include mixin.mobil-subheader;
+    color: variables.$primary-Silver;
+    width: 50%;
+    text-align: center;
+    padding-bottom: variables.$pm-base * 2;
+
+    @include mixin.tablet {
+      width: fit-content;
+      padding-bottom: variables.$pm-base * 4;
+      margin-left: variables.$pm-base * 16;
+    }
+
+    @include mixin.desktop {
+      padding-bottom: variables.$pm-base * 6;
+      margin-left: variables.$pm-base * 12;
+    }
+  }
+
+  &__link:hover,
+  &__link--active {
+    color: variables.$primary-white;
+    border-bottom: 3px solid variables.$primary-white;
+  }
+}
