@@ -3,3 +3,23 @@
 @use "./partials/global";
 @use "./partials/footer";
 @use "./partials/header";
+
+.shows {
+  &__title {
+  }
+
+  &__table {
+  }
+
+  &__table-row {
+  }
+
+  &__table-head {
+  }
+  &__table-date {
+  }
+  &__table-data {
+  }
+  &__table-btn {
+  }
+}
