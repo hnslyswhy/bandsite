@@ -266,7 +266,9 @@
 /****** main - hero *******/
 .hero {
   width: 100%;
-  height: 45vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   min-height: 17rem;
   background-blend-mode: multiply;
   background-color: rgba(50, 50, 50, 0.5);
@@ -308,9 +310,12 @@
 }
 .hero__player-container {
   margin: 0 auto;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 .hero__player {
-  height: 6.25rem;
+  width: 100%;
+  height: 18vh;
 }
 
 /****** main - shows *******/
@@ -346,6 +351,17 @@
 .shows__table-row--display1 {
   display: none;
 }
+.shows__table-row a {
+  width: 100%;
+  color: #ffffff;
+  font-family: "Avenir";
+  font-weight: 600;
+  line-height: 1.375rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+  padding: 0.5rem 5rem;
+}
 .shows__table-head {
   font-family: "Avenir";
   font-weight: 700;
@@ -380,12 +396,5 @@
   background-color: #323232;
   padding: 0.5rem;
   text-align: center;
-  color: #ffffff;
-  font-family: "Avenir";
-  font-weight: 600;
-  line-height: 1.375rem;
-  font-size: 0.875rem;
-  letter-spacing: 0.01rem;
-  font-weight: 400;
   border-radius: 4px;
 }/*# sourceMappingURL=shows.css.map */

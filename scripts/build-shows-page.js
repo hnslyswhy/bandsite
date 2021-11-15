@@ -78,7 +78,7 @@ function displayShows(arr) {
     data3.innerHTML = `<p class='shows__table-head shows__table-head--display'>LOCATION</p> ${show.location}`;
     const data4 = document.createElement("td");
     data4.classList.add("shows__table-btn");
-    data4.innerText = "BUY TICKETS";
+    data4.innerHTML = "<a href='#'>BUY TICKETS</a>";
     // append
     row.append(data1, data2, data3, data4);
     table.append(row);
