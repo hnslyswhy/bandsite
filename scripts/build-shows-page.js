@@ -35,7 +35,7 @@ function displayShows(arr) {
   // create tags, innerText, add class for container and table frame
   const main = document.querySelector(".main");
   const section = document.createElement("section");
-  section.classList.add = "shows";
+  section.classList.add("shows");
 
   const title = document.createElement("h2");
   title.innerText = "Shows";
@@ -44,7 +44,7 @@ function displayShows(arr) {
   const table = document.createElement("table");
   table.classList.add("shows__table");
   const tableRow = document.createElement("tr");
-  tableRow.classList.add("shows__table-row");
+  tableRow.classList.add("shows__table-row", "shows__table-row--display1");
   const dateHead = document.createElement("th");
   dateHead.innerText = "DATE";
   dateHead.classList.add("shows__table-head");
@@ -63,18 +63,22 @@ function displayShows(arr) {
   for (let show of arr) {
     // create table row content
     const row = document.createElement("tr");
+    row.classList.add("shows__table-row");
     const data1 = document.createElement("td");
+    //  let pText = document.createElement("pText");
+    //  pText.classList.add("shows__heading");
+
     data1.classList.add("shows__table-date");
-    data1.innerText = show.date;
+    data1.innerHTML = `<p class='shows__table-head shows__table-head--display'>DATE</p> ${show.date}`;
     const data2 = document.createElement("td");
     data2.classList.add("shows__table-data");
-    data2.innerText = show.venue;
+    data2.innerHTML = `<p class='shows__table-head shows__table-head--display'>VENUE</p> ${show.venue}`;
     const data3 = document.createElement("td");
     data3.classList.add("shows__table-data");
-    data3.innerText = show.location;
+    data3.innerHTML = `<p class='shows__table-head shows__table-head--display'>LOCATION</p> ${show.location}`;
     const data4 = document.createElement("td");
     data4.classList.add("shows__table-btn");
-    data4.innerHTML = "<button>BUY TICKETS</button>";
+    data4.innerText = "BUY TICKETS";
     // append
     row.append(data1, data2, data3, data4);
     table.append(row);

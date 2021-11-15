@@ -4,22 +4,114 @@
 @use "./partials/footer";
 @use "./partials/header";
 
-.shows {
+/****** main - hero *******/
+.hero {
+  width: 100%;
+  height: 45vh;
+  min-height: 17rem;
+  background-blend-mode: multiply;
+  background-color: rgba(50, 50, 50, 0.5);
+  background-image: url("../assets/images/hero-shows.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: variables.$pm-base * 4;
+  @include mixin.flexbox(column, flex-start, flex-start);
+
+  @include mixin.tablet {
+  }
+
+  @include mixin.desktop {
+  }
+
+  &__album-name {
+    @include mixin.mobil-text;
+    color: variables.$primary-white;
+    margin: variables.$pm-base * 4 0;
+  }
+
   &__title {
+    @include mixin.mobil-header;
+    color: variables.$primary-white;
+    margin-bottom: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      @include mixin.page-header;
+    }
+
+    @include mixin.desktop {
+    }
+  }
+
+  &__player-container {
+    margin: 0 auto;
+  }
+
+  &__player {
+    height: 6.25rem;
+  }
+}
+
+/****** main - shows *******/
+.shows {
+  width: 100%;
+  padding: variables.$pm-base * 4 0;
+
+  &__title {
+    @include mixin.mobil-header;
+    margin: variables.$pm-base * 4;
+    margin-bottom: 0;
   }
 
   &__table {
+    width: 100%;
+    @include mixin.flexbox(column, center, flex-start);
   }
 
   &__table-row {
+    width: 100%;
+    @include mixin.flexbox(column, center, flex-start);
+    padding: variables.$pm-base * 4;
+    border-bottom: 1px solid variables.$secondary-silver;
+
+    &--display1 {
+      display: none;
+    }
   }
 
   &__table-head {
+    @include mixin.mobil-button;
+    color: variables.$primary-silver;
+
+    @include mixin.tablet {
+      &--display {
+        display: none;
+      }
+    }
   }
+
   &__table-date {
+    @include mixin.mobil-text;
+    color: variables.$primary-black;
+    font-weight: 700;
+    margin: variables.$pm-base * 2 0;
   }
+
   &__table-data {
+    //     @extend &__table-data;
+    @include mixin.mobil-text;
+    color: variables.$primary-black;
+    margin: variables.$pm-base * 2 0;
   }
+
   &__table-btn {
+    width: 100%;
+    background-color: variables.$primary-black;
+    padding: variables.$pm-base * 2;
+    text-align: center;
+    color: variables.$primary-white;
+    @include mixin.mobil-subheader;
+    font-weight: 400;
+    border-radius: 4px;
   }
 }
