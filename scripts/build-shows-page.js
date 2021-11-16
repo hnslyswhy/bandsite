@@ -52,37 +52,56 @@ function displayShows(arr) {
   venueHead.innerText = "VENUE";
   venueHead.classList.add("shows__table-head");
   const locationHead = document.createElement("th");
-  locationHead.innerText = "DATE";
+  locationHead.innerText = "LOCATION";
   locationHead.classList.add("shows__table-head");
+  const btnHead = document.createElement("th");
+  btnHead.innerText = "";
+  btnHead.classList.add("shows__table-head");
   // append tags
   main.append(section);
   section.append(title, table);
   table.append(tableRow);
-  tableRow.append(dateHead, venueHead, locationHead);
+  tableRow.append(dateHead, venueHead, locationHead, btnHead);
 
   for (let show of arr) {
     // create table row content
     const row = document.createElement("tr");
     row.classList.add("shows__table-row");
     const data1 = document.createElement("td");
-    //  let pText = document.createElement("pText");
-    //  pText.classList.add("shows__heading");
-
+    const p1 = document.createElement("td");
+    p1.classList.add("shows__table-head", "shows__table-head--display");
+    p1.innerText = "DATE";
     data1.classList.add("shows__table-date");
-    data1.innerHTML = `<p class='shows__table-head shows__table-head--display'>DATE</p> ${show.date}`;
+    data1.innerText = show.date;
+
+    const p2 = document.createElement("td");
+    p2.classList.add("shows__table-head", "shows__table-head--display");
+    p2.innerText = "VENUE";
     const data2 = document.createElement("td");
     data2.classList.add("shows__table-data");
-    data2.innerHTML = `<p class='shows__table-head shows__table-head--display'>VENUE</p> ${show.venue}`;
+    data2.innerText = show.venue;
+
+    const p3 = document.createElement("td");
+    p3.classList.add("shows__table-head", "shows__table-head--display");
+    p3.innerText = "LOCATION";
     const data3 = document.createElement("td");
     data3.classList.add("shows__table-data");
-    data3.innerHTML = `<p class='shows__table-head shows__table-head--display'>LOCATION</p> ${show.location}`;
+    data3.innerText = show.location;
+
     const data4 = document.createElement("td");
     data4.classList.add("shows__table-btn");
-    data4.innerHTML = "<a href='#'>BUY TICKETS</a>";
+    data4.innerText = "BUY TICKETS";
+
     // append
-    row.append(data1, data2, data3, data4);
+    row.append(p1, data1, p2, data2, p3, data3, data4);
     table.append(row);
   }
 }
 
 displayShows(showList);
+
+const buyTicketBtn = document.querySelector(".shows__table-btn");
+buyTicketBtn.addEventListener("click", function () {
+  console.log(window.location);
+  window.location.replace("../index.html"); // need to change redirect route in the future
+});

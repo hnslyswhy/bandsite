@@ -10,17 +10,21 @@
   @include mixin.tablet {
     @include mixin.flexbox(row, flex-start, center);
     padding-left: variables.$pm-base * 9;
+    padding-top: variables.$pm-base * 6;
   }
 
   @include mixin.desktop {
     padding-left: variables.$pm-base * 32;
-    padding-top: variables.$pm-base * 6;
   }
 
   &__logo {
     width: 100%;
     max-height: 1.25rem;
     max-width: 7.5rem;
+
+    @include mixin.tablet {
+      margin-bottom: variables.$pm-base * 4;
+    }
   }
 }
 

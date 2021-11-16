@@ -20,15 +20,22 @@
   @include mixin.flexbox(column, flex-start, flex-start);
 
   @include mixin.tablet {
+    padding: variables.$pm-base * 9;
   }
 
   @include mixin.desktop {
+    @include mixin.flexbox(row, space-between, center);
   }
 
   &__album-name {
     @include mixin.mobil-text;
     color: variables.$primary-white;
     margin: variables.$pm-base * 4 0;
+
+    @include mixin.tablet {
+      @include mixin.subheader;
+      font-weight: 400;
+    }
   }
 
   &__title {
@@ -48,11 +55,30 @@
     margin: 0 auto;
     width: 100%;
     margin-bottom: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      margin: variables.$pm-base * 6 0;
+    }
+
+    @include mixin.desktop {
+      width: 50%;
+    }
   }
 
   &__player {
     width: 100%;
     height: 18vh;
+
+    @include mixin.tablet {
+      width: 62%;
+      height: 14vh;
+    }
+
+    @include mixin.desktop {
+      margin-left: variables.$pm-base * 18;
+      width: 70%;
+      height: 16vh;
+    }
   }
 }
 
@@ -61,10 +87,24 @@
   width: 100%;
   padding: variables.$pm-base * 4 0;
 
+  @include mixin.tablet {
+    padding: variables.$pm-base * 9;
+  }
+
+  @include mixin.desktop {
+    @include mixin.flexbox(row, space-between, flex-start);
+  }
+
   &__title {
     @include mixin.mobil-header;
+    color: variables.$primary-black;
     margin: variables.$pm-base * 4;
     margin-bottom: 0;
+
+    @include mixin.tablet {
+      @include mixin.section-header;
+      margin-bottom: variables.$pm-base * 4;
+    }
   }
 
   &__table {
@@ -78,28 +118,33 @@
     padding: variables.$pm-base * 4;
     border-bottom: 1px solid variables.$secondary-silver;
 
-    &--display1 {
-      display: none;
+    @include mixin.tablet {
+      @include mixin.flexbox(row, space-between, center);
     }
 
-    a {
-      width: 100%;
-      color: variables.$primary-white;
-      @include mixin.mobil-subheader;
-      font-weight: 400;
-      // the buy ticket btn does not take the whole row
-      padding: variables.$pm-base * 2 variables.$pm-base * 20;
+    &--display1 {
+      display: none;
+
+      @include mixin.tablet {
+        display: flex;
+      }
     }
   }
 
   &__table-head {
     @include mixin.mobil-button;
     color: variables.$primary-silver;
+    margin-bottom: variables.$pm-base * 1;
 
     @include mixin.tablet {
       &--display {
         display: none;
       }
+    }
+
+    @include mixin.tablet {
+      width: 20%;
+      text-align: left;
     }
   }
 
@@ -107,14 +152,24 @@
     @include mixin.mobil-text;
     color: variables.$primary-black;
     font-weight: 700;
-    margin: variables.$pm-base * 2 0;
+    margin-bottom: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      width: 24%;
+      text-align: left;
+    }
   }
 
   &__table-data {
     //     @extend &__table-data;
     @include mixin.mobil-text;
     color: variables.$primary-black;
-    margin: variables.$pm-base * 2 0;
+    margin-bottom: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      width: 24%;
+      text-align: left;
+    }
   }
 
   &__table-btn {
@@ -123,5 +178,17 @@
     padding: variables.$pm-base * 2;
     text-align: center;
     border-radius: 4px;
+    color: variables.$primary-white;
+    @include mixin.mobil-subheader;
+    font-weight: 400;
+
+    @include mixin.tablet {
+      width: 20%;
+    }
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+    }
   }
 }
