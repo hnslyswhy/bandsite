@@ -281,6 +281,11 @@
   width: 100%;
   padding: variables.$pm-base * 4;
 
+  @include mixin.tablet {
+    padding: variables.$pm-base * 12 variables.$pm-base * 9;
+    padding-bottom: variables.$pm-base * 9;
+  }
+
   &__subheader {
     @include mixin.mobil-header;
     color: variables.$primary-black;
@@ -301,28 +306,60 @@
   padding: variables.$pm-base * 4 0;
   border-bottom: 1px solid variables.$secondary-silver;
 
+  @include mixin.tablet {
+    @include mixin.flexbox(row, flex-start, flex-start);
+    //    padding: variables.$pm-base * 7 variables.$pm-base * 9;
+    //    margin-left: variables.$pm-base * 6;
+    width: 85%;
+    padding-bottom: variables.$pm-base * 2;
+    padding-top: variables.$pm-base * 9;
+    margin: 0 variables.$pm-base * 15;
+  }
+
   &__img {
     width: 12vw;
     height: 12vw;
-    max-width: 9rem;
-    max-height: 9rem;
+    max-width: 2.25rem;
+    max-height: 2.25rem;
     border-radius: 50%;
     margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      width: 10vw;
+      height: 10vw;
+      max-width: 3rem;
+      max-height: 3rem;
+      margin-top: variables.$pm-base * 6;
+    }
   }
 
   &__content {
-    width: 80%;
+    width: 82%;
     margin-left: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      margin-left: variables.$pm-base * 4;
+      width: 88%;
+      @include mixin.flexbox(column, flex-start, center);
+    }
   }
 
   &__entries {
     @include mixin.flexbox(column, flex-start, flex-start);
+    @include mixin.tablet {
+      width: 100%;
+      margin-bottom: variables.$pm-base * 4;
+    }
   }
 
   &__title {
     @include mixin.mobil-button;
     color: variables.$primary-silver;
     margin-bottom: variables.$pm-base;
+
+    @include mixin.tablet {
+      @include mixin.button;
+    }
   }
 }
 
@@ -334,6 +371,7 @@
   border-radius: 4px;
   @include mixin.mobil-text;
   color: variables.$primary-black;
+  background-color: variables.$secondary-white;
 
   @include mixin.tablet {
     padding: variables.$pm-base * 4;
@@ -361,6 +399,12 @@
   background-color: variables.$primary-black;
   border-radius: 4px;
 
+  @include mixin.tablet {
+    width: 20%;
+    margin-bottom: variables.$pm-base * 4;
+    align-self: flex-end;
+  }
+
   &:hover {
     background-color: variables.$secondary-black;
   }
@@ -373,15 +417,29 @@
     padding-top: variables.$pm-base * 4;
     padding-bottom: variables.$pm-base * 3;
     border-bottom: 1px solid variables.$secondary-silver;
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, flex-start, flex-start);
+      width: 84%;
+      padding: variables.$pm-base * 6 0;
+      margin: 0 variables.$pm-base * 14;
+    }
   }
 
   &__profile-image {
     width: 12vw;
     height: 12vw;
-    max-width: 9rem;
-    max-height: 9rem;
+    max-width: 2.25rem;
+    max-height: 2.25rem;
     border-radius: 50%;
     background-color: variables.$secondary-silver;
+
+    @include mixin.tablet {
+      width: 10vw;
+      height: 10vw;
+      max-width: 3rem;
+      max-height: 3rem;
+    }
   }
 
   &__container {
@@ -389,6 +447,11 @@
     @include mixin.mobil-text;
     color: variables.$primary-black;
     margin-left: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      width: 88%;
+      @include mixin.text;
+    }
   }
 
   &__info-container {

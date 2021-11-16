@@ -621,6 +621,12 @@
   width: 100%;
   padding: 1rem;
 }
+@media (min-width: 48rem) {
+  .comment {
+    padding: 3rem 2.25rem;
+    padding-bottom: 2.25rem;
+  }
+}
 .comment__subheader {
   font-family: "Avenir";
   font-weight: 700;
@@ -652,23 +658,60 @@
   padding: 1rem 0;
   border-bottom: 1px solid #e1e1e1;
 }
+@media (min-width: 48rem) {
+  .form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 85%;
+    padding-bottom: 0.5rem;
+    padding-top: 2.25rem;
+    margin: 0 3.75rem;
+  }
+}
 .form__img {
   width: 12vw;
   height: 12vw;
-  max-width: 9rem;
-  max-height: 9rem;
+  max-width: 2.25rem;
+  max-height: 2.25rem;
   border-radius: 50%;
   margin-top: 1rem;
 }
+@media (min-width: 48rem) {
+  .form__img {
+    width: 10vw;
+    height: 10vw;
+    max-width: 3rem;
+    max-height: 3rem;
+    margin-top: 1.5rem;
+  }
+}
 .form__content {
-  width: 80%;
+  width: 82%;
   margin-left: 1rem;
+}
+@media (min-width: 48rem) {
+  .form__content {
+    margin-left: 1rem;
+    width: 88%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 .form__entries {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+@media (min-width: 48rem) {
+  .form__entries {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }
 .form__title {
   font-family: "Avenir";
@@ -677,6 +720,14 @@
   font-size: 0.625rem;
   color: #afafaf;
   margin-bottom: 0.25rem;
+}
+@media (min-width: 48rem) {
+  .form__title {
+    font-family: "Avenir";
+    font-weight: 700;
+    line-height: 1.25rem;
+    font-size: 0.75rem;
+  }
 }
 
 #name,
@@ -690,6 +741,7 @@
   line-height: 1.2rem;
   font-size: 0.813rem;
   color: #323232;
+  background-color: #fafafa;
 }
 @media (min-width: 48rem) {
   #name,
@@ -722,6 +774,13 @@
   background-color: #323232;
   border-radius: 4px;
 }
+@media (min-width: 48rem) {
+  #submitBtn {
+    width: 20%;
+    margin-bottom: 1rem;
+    align-self: flex-end;
+  }
+}
 #submitBtn:hover {
   background-color: #000000;
 }
@@ -736,13 +795,32 @@
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #e1e1e1;
 }
+@media (min-width: 48rem) {
+  .comment__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 84%;
+    padding: 1.5rem 0;
+    margin: 0 3.5rem;
+  }
+}
 .comment__profile-image {
   width: 12vw;
   height: 12vw;
-  max-width: 9rem;
-  max-height: 9rem;
+  max-width: 2.25rem;
+  max-height: 2.25rem;
   border-radius: 50%;
   background-color: #e1e1e1;
+}
+@media (min-width: 48rem) {
+  .comment__profile-image {
+    width: 10vw;
+    height: 10vw;
+    max-width: 3rem;
+    max-height: 3rem;
+  }
 }
 .comment__container {
   width: 80%;
@@ -752,6 +830,16 @@
   font-size: 0.813rem;
   color: #323232;
   margin-left: 1rem;
+}
+@media (min-width: 48rem) {
+  .comment__container {
+    width: 88%;
+    font-family: "Avenir";
+    font-weight: 400;
+    line-height: 1.375rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.05rem;
+  }
 }
 .comment__info-container {
   display: flex;

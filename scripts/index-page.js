@@ -1,5 +1,5 @@
 /****** comment handling ******/
-const commentList = [
+let commentList = [
   {
     name: "Connor Walton",
     date: "02/17/2021",
@@ -70,9 +70,10 @@ loopCommentList(commentList);
 
 /****** form handling ******/
 const form = document.querySelector(".form");
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   //construct form input
+  // or can give input a name attribute and then e.target.nameChosen.value
   const username = e.target[0].value;
   const userComment = e.target[1].value;
   let commentDate = new Date();
@@ -89,7 +90,12 @@ form.addEventListener("submit", function (e) {
     commentText: userComment,
     profileImg: "",
   });
-  console.log(commentList);
+  // show newly added comment
+  let newList = [commentList.pop()];
+  console.log(newList);
+  loopCommentList(newList);
+  // add timestamp
+  console.log(e.timeStamp);
   //reset the form
   const nameInput = document.querySelector("#name");
   const commentInput = document.querySelector("#comment");

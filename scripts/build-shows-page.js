@@ -108,4 +108,4 @@ for (let i = 1; i < rowList.length; i++) {
     rowList[i].classList.add("shows__table-row--active");
   });
 }
-// conflict with hover effect, line 165-171
+//!!!!! conflict with hover effect, line 165-171
