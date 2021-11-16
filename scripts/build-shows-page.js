@@ -41,20 +41,20 @@ function displayShows(arr) {
   title.innerText = "Shows";
   title.classList.add("shows__title");
 
-  const table = document.createElement("table");
+  const table = document.createElement("article");
   table.classList.add("shows__table");
-  const tableRow = document.createElement("tr");
+  const tableRow = document.createElement("div");
   tableRow.classList.add("shows__table-row", "shows__table-row--display1");
-  const dateHead = document.createElement("th");
+  const dateHead = document.createElement("p");
   dateHead.innerText = "DATE";
   dateHead.classList.add("shows__table-head");
-  const venueHead = document.createElement("th");
+  const venueHead = document.createElement("p");
   venueHead.innerText = "VENUE";
   venueHead.classList.add("shows__table-head");
-  const locationHead = document.createElement("th");
+  const locationHead = document.createElement("p");
   locationHead.innerText = "LOCATION";
   locationHead.classList.add("shows__table-head");
-  const btnHead = document.createElement("th");
+  const btnHead = document.createElement("p");
   btnHead.innerText = "";
   btnHead.classList.add("shows__table-head");
   // append tags
@@ -65,30 +65,30 @@ function displayShows(arr) {
 
   for (let show of arr) {
     // create table row content
-    const row = document.createElement("tr");
+    const row = document.createElement("div");
     row.classList.add("shows__table-row");
-    const data1 = document.createElement("td");
-    const p1 = document.createElement("td");
+    const data1 = document.createElement("p");
+    const p1 = document.createElement("p");
     p1.classList.add("shows__table-head", "shows__table-head--display");
     p1.innerText = "DATE";
     data1.classList.add("shows__table-date");
     data1.innerText = show.date;
 
-    const p2 = document.createElement("td");
+    const p2 = document.createElement("p");
     p2.classList.add("shows__table-head", "shows__table-head--display");
     p2.innerText = "VENUE";
-    const data2 = document.createElement("td");
+    const data2 = document.createElement("p");
     data2.classList.add("shows__table-data");
     data2.innerText = show.venue;
 
-    const p3 = document.createElement("td");
+    const p3 = document.createElement("p");
     p3.classList.add("shows__table-head", "shows__table-head--display");
     p3.innerText = "LOCATION";
-    const data3 = document.createElement("td");
+    const data3 = document.createElement("p");
     data3.classList.add("shows__table-data");
     data3.innerText = show.location;
 
-    const data4 = document.createElement("td");
+    const data4 = document.createElement("a");
     data4.classList.add("shows__table-btn");
     data4.innerText = "BUY TICKETS";
 
