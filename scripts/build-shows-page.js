@@ -63,7 +63,7 @@ function displayShows(arr) {
   table.append(tableRow);
   tableRow.append(dateHead, venueHead, locationHead, btnHead);
 
-  for (let show of arr) {
+  for (let i = 0; i < arr.length; i++) {
     // create table row content
     const row = document.createElement("div");
     row.classList.add("shows__table-row");
@@ -72,24 +72,25 @@ function displayShows(arr) {
     p1.classList.add("shows__table-head", "shows__table-head--display");
     p1.innerText = "DATE";
     data1.classList.add("shows__table-date");
-    data1.innerText = show.date;
+    data1.innerText = arr[i].date;
 
     const p2 = document.createElement("p");
     p2.classList.add("shows__table-head", "shows__table-head--display");
     p2.innerText = "VENUE";
     const data2 = document.createElement("p");
     data2.classList.add("shows__table-data");
-    data2.innerText = show.venue;
+    data2.innerText = arr[i].venue;
 
     const p3 = document.createElement("p");
     p3.classList.add("shows__table-head", "shows__table-head--display");
     p3.innerText = "LOCATION";
     const data3 = document.createElement("p");
     data3.classList.add("shows__table-data");
-    data3.innerText = show.location;
+    data3.innerText = arr[i].location;
 
     const data4 = document.createElement("a");
     data4.classList.add("shows__table-btn");
+    data4.href = "#"; // need to be able to dynamically go to different page
     data4.innerText = "BUY TICKETS";
 
     // append
@@ -100,8 +101,11 @@ function displayShows(arr) {
 
 displayShows(showList);
 
-const buyTicketBtn = document.querySelector(".shows__table-btn");
-buyTicketBtn.addEventListener("click", function () {
-  console.log(window.location);
-  window.location.replace("../index.html"); // need to change redirect route in the future
-});
+// row background color change
+const rowList = document.querySelectorAll(".shows__table-row");
+for (let i = 1; i < rowList.length; i++) {
+  rowList[i].addEventListener("click", function () {
+    rowList[i].classList.add("shows__table-row--active");
+  });
+}
+// conflict with hover effect, line 165-171

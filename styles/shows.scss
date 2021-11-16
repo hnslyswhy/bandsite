@@ -162,6 +162,14 @@
       padding-bottom: variables.$pm-base * 2;
     }
 
+    &--active {
+      background-color: variables.$secondary-silver;
+    }
+
+    &:hover {
+      background-color: variables.$secondary-white;
+    }
+
     &:nth-of-type(1) {
       border-color: variables.$primary-white;
       @include mixin.tablet {

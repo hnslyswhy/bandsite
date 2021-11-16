@@ -32,9 +32,9 @@ function displayComment(aComment) {
   const infoContainer = document.createElement("div");
   infoContainer.classList.add("comment__info-container");
 
-  const profileImg = document.createElement("img");
+  const profileImg = document.createElement("div");
   profileImg.classList.add("comment__profile-image");
-  profileImg.src = aComment.profileImg;
+  //profileImg.src = aComment.profileImg;
 
   const name = document.createElement("p");
   name.classList.add("comment__name");
@@ -69,7 +69,7 @@ function loopCommentList(arr) {
 loopCommentList(commentList);
 
 /****** form handling ******/
-const form = document.querySelector("#form");
+const form = document.querySelector(".form");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   //construct form input

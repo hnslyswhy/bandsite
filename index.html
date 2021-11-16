@@ -78,29 +78,35 @@
       </section>
       <!-- form -->
       <section class="comment">
-        <form id="form">
-          <!--should you input type=image/file-->
+        <h2 class="comment__subheader">Join the Conversation</h2>
+        <form class="form">
+          <!--should use input type=file in real case-->
           <img
             class="form__img"
             src="./assets/images/Mohan-muruge.jpg"
             alt="profile-image"
           />
-          <div>
-            <div>
-              <label for="name">NAME</label>
+          <div class="form__content">
+            <div class="form__entries">
+              <label for="name" class="form__title">NAME</label>
               <input
                 id="name"
                 type="text"
                 value=""
                 placeholder="Enter your name"
+                minlength="6"
+                required
               />
             </div>
-            <div>
-              <label for="comment">COMMENT</label>
+            <div class="form__entries">
+              <label for="comment" class="form__title">COMMENT</label>
               <textarea
                 id="comment"
                 value=""
                 placeholder="Add a new comment"
+                rows="4"
+                minlength="10"
+                required
               ></textarea>
             </div>
             <button id="submitBtn" type="submit">COMMENT</button>

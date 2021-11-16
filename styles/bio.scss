@@ -277,27 +277,130 @@
 }
 
 /****** main - form *******/
+.comment {
+  width: 100%;
+  padding: variables.$pm-base * 4;
+
+  &__subheader {
+    @include mixin.mobil-header;
+    color: variables.$primary-black;
+
+    @include mixin.tablet {
+      @include mixin.section-header;
+    }
+
+    @include mixin.desktop {
+      margin-left: variables.$pm-base * 24;
+    }
+  }
+}
+
+.form {
+  @include mixin.flexbox(row, space-between, flex-start);
+  width: 100%;
+  padding: variables.$pm-base * 4 0;
+  border-bottom: 1px solid variables.$secondary-silver;
+
+  &__img {
+    width: 12vw;
+    height: 12vw;
+    max-width: 9rem;
+    max-height: 9rem;
+    border-radius: 50%;
+    margin-top: variables.$pm-base * 4;
+  }
+
+  &__content {
+    width: 80%;
+    margin-left: variables.$pm-base * 4;
+  }
+
+  &__entries {
+    @include mixin.flexbox(column, flex-start, flex-start);
+  }
+
+  &__title {
+    @include mixin.mobil-button;
+    color: variables.$primary-silver;
+    margin-bottom: variables.$pm-base;
+  }
+}
+
+#name,
+#comment {
+  padding: variables.$pm-base * 3;
+  width: 100%;
+  border: 1px solid variables.$secondary-silver;
+  border-radius: 4px;
+  @include mixin.mobil-text;
+  color: variables.$primary-black;
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 4;
+  }
+
+  &:focus {
+    outline: none; // cancel the defaults
+    border: 1px solid variables.$primary-black;
+  }
+  &:focus:invalid {
+    //chain up to avoid red border on loading
+    outline: none;
+    border: 1px solid #d22d2d;
+  }
+}
+
+#submitBtn {
+  height: 2.5rem;
+  width: 100%;
+  padding: variables.$pm-base * 2 variables.$pm-base * 8;
+  min-width: 9.375rem;
+  margin-top: variables.$pm-base * 2;
+  @include mixin.mobil-text;
+  color: variables.$primary-white;
+  background-color: variables.$primary-black;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: variables.$secondary-black;
+  }
+}
 
 /****** main - js *******/
 .comment {
   &__card {
+    @include mixin.flexbox(row, flex-start, flex-start);
+    padding-top: variables.$pm-base * 4;
+    padding-bottom: variables.$pm-base * 3;
+    border-bottom: 1px solid variables.$secondary-silver;
   }
 
   &__profile-image {
+    width: 12vw;
+    height: 12vw;
+    max-width: 9rem;
+    max-height: 9rem;
+    border-radius: 50%;
+    background-color: variables.$secondary-silver;
   }
 
   &__container {
+    width: 80%;
+    @include mixin.mobil-text;
+    color: variables.$primary-black;
+    margin-left: variables.$pm-base * 4;
   }
 
   &__info-container {
+    @include mixin.flexbox(row, space-between, center);
+    margin-bottom: variables.$pm-base;
   }
 
   &__name {
+    font-weight: 600;
   }
 
   &__date {
-  }
-
-  &__content {
+    color: variables.$primary-silver;
   }
 }
