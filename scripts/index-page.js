@@ -84,17 +84,22 @@ form.addEventListener("submit", (e) => {
   ];
   commentDate = `${month}/${day}/${year}`;
   // add into list
-  commentList.push({
+  commentList.unshift({
     name: username,
     date: commentDate,
     commentText: userComment,
     profileImg: "",
   });
-  // show newly added comment
-  let newList = [commentList.pop()];
-  loopCommentList(newList);
+
+  //clear the displayed comment
+  const cards = document.querySelectorAll(".comment__card");
+  for (let card of cards) {
+    card.remove();
+  }
+  // show new commentList
+  loopCommentList(commentList);
   // add timestamp
-  console.log(e.timeStamp);
+  // console.log(e.timeStamp);
   //reset the form
   // can also do by select the input, and then nameInput.value = ""; commentInput.value = "";
   e.target.reset();
