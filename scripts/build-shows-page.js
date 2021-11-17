@@ -101,11 +101,22 @@ function displayShows(arr) {
 
 displayShows(showList);
 
-// row background color change
+/***** row hover & active effect *******/
 const rowList = document.querySelectorAll(".shows__table-row");
 for (let i = 1; i < rowList.length; i++) {
+  //hover effect
+  rowList[i].addEventListener("mouseover", () => {
+    rowList[i].classList.add("shows__table-row--hover");
+  });
+  rowList[i].addEventListener("mouseleave", () => {
+    rowList[i].classList.remove("shows__table-row--hover");
+  });
+
+  //active effect
   rowList[i].addEventListener("click", function () {
     rowList[i].classList.add("shows__table-row--active");
   });
+  // rowList[i].addEventListener("", function () {
+  //   rowList[i].classList.remove("shows__table-row--active");
+  // });
 }
-//!!!!! conflict with hover effect, line 165-171

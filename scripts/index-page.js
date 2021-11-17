@@ -24,30 +24,41 @@ let commentList = [
 ];
 
 function displayComment(aComment) {
-  //create tags and add class and content
+  //create tags &  add class and content
   const card = document.createElement("div");
   card.classList.add("comment__card");
   const commentContainer = document.createElement("div");
   commentContainer.classList.add("comment__container");
   const infoContainer = document.createElement("div");
   infoContainer.classList.add("comment__info-container");
-
   const profileImg = document.createElement("div");
   profileImg.classList.add("comment__profile-image");
-  //profileImg.src = aComment.profileImg;
-
+  //use <img> + profileImg.src = aComment.profileImg in real case;
   const name = document.createElement("p");
   name.classList.add("comment__name");
   name.innerText = aComment.name;
-
   const date = document.createElement("p");
   date.classList.add("comment__date");
-  date.innerText = aComment.date;
-
+  // time difference
+  let currentTime = new Date();
+  const [month, day, year] = [
+    currentTime.getMonth(),
+    currentTime.getDate(),
+    currentTime.getFullYear(),
+  ];
+  currentTime = `${month}/${day}/${year}`;
+  let differenceInTime = new Date(currentTime) - new Date(aComment.date);
+  let differenceInDays = parseInt(
+    Math.floor(differenceInTime / (1000 * 3600 * 24))
+  );
+  if (differenceInDays < 1) {
+    date.innerText = `${aComment.date} (today)`;
+  } else {
+    date.innerText = `${aComment.date} (${differenceInDays} days ago)`;
+  }
   const commentContent = document.createElement("p");
   commentContent.classList.add("comment__content");
   commentContent.innerText = aComment.commentText;
-
   const commentSection = document.querySelector(".comment");
 
   // append tags
@@ -60,22 +71,21 @@ function displayComment(aComment) {
   commentSection.append(card);
 }
 
+// loop through all the comments
 function loopCommentList(arr) {
   for (let comment of arr) {
     displayComment(comment);
   }
 }
-
 loopCommentList(commentList);
 
 /****** form handling ******/
 const form = document.querySelector(".form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  //construct form input
-  // or can give input a name attribute and then e.target.nameChosen.value
+  //get new comment components from form input
   const username = e.target[0].value;
-  const userComment = e.target[1].value;
+  const userComment = e.target[1].value; // or can give input a name attribute and then e.target.nameChosen.value
   let commentDate = new Date();
   const [month, day, year] = [
     commentDate.getMonth(),
@@ -83,6 +93,9 @@ form.addEventListener("submit", (e) => {
     commentDate.getFullYear(),
   ];
   commentDate = `${month}/${day}/${year}`;
+
+  // add timestamp
+
   // add into list
   commentList.unshift({
     name: username,
@@ -96,11 +109,10 @@ form.addEventListener("submit", (e) => {
   for (let card of cards) {
     card.remove();
   }
+
   // show new commentList
   loopCommentList(commentList);
-  // add timestamp
-  // console.log(e.timeStamp);
+
   //reset the form
-  // can also do by select the input, and then nameInput.value = ""; commentInput.value = "";
-  e.target.reset();
+  e.target.reset(); // can also do by select the input, and then nameInput.value = ""; commentInput.value = "";
 });
