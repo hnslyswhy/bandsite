@@ -627,6 +627,14 @@
     padding-bottom: 2.25rem;
   }
 }
+@media (min-width: 80rem) {
+  .comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
 .comment__subheader {
   font-family: "Avenir";
   font-weight: 700;
@@ -646,6 +654,7 @@
 @media (min-width: 80rem) {
   .comment__subheader {
     margin-left: 6rem;
+    align-self: flex-start;
   }
 }
 
@@ -668,6 +677,11 @@
     padding-bottom: 0.5rem;
     padding-top: 2.25rem;
     margin: 0 3.75rem;
+  }
+}
+@media (min-width: 80rem) {
+  .form {
+    width: 40%;
   }
 }
 .form__img {
@@ -804,6 +818,11 @@
     width: 84%;
     padding: 1.5rem 0;
     margin: 0 3.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .comment__card {
+    width: 40%;
   }
 }
 .comment__profile-image {

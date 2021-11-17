@@ -92,13 +92,10 @@ form.addEventListener("submit", (e) => {
   });
   // show newly added comment
   let newList = [commentList.pop()];
-  console.log(newList);
   loopCommentList(newList);
   // add timestamp
   console.log(e.timeStamp);
   //reset the form
-  const nameInput = document.querySelector("#name");
-  const commentInput = document.querySelector("#comment");
-  nameInput.value = "";
-  commentInput.value = "";
+  // can also do by select the input, and then nameInput.value = ""; commentInput.value = "";
+  e.target.reset();
 });

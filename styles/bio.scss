@@ -286,6 +286,10 @@
     padding-bottom: variables.$pm-base * 9;
   }
 
+  @include mixin.desktop {
+    @include mixin.flexbox(column, flex-start, center);
+  }
+
   &__subheader {
     @include mixin.mobil-header;
     color: variables.$primary-black;
@@ -296,6 +300,7 @@
 
     @include mixin.desktop {
       margin-left: variables.$pm-base * 24;
+      align-self: flex-start;
     }
   }
 }
@@ -308,12 +313,14 @@
 
   @include mixin.tablet {
     @include mixin.flexbox(row, flex-start, flex-start);
-    //    padding: variables.$pm-base * 7 variables.$pm-base * 9;
-    //    margin-left: variables.$pm-base * 6;
     width: 85%;
     padding-bottom: variables.$pm-base * 2;
     padding-top: variables.$pm-base * 9;
     margin: 0 variables.$pm-base * 15;
+  }
+
+  @include mixin.desktop {
+    width: 40%;
   }
 
   &__img {
@@ -423,6 +430,10 @@
       width: 84%;
       padding: variables.$pm-base * 6 0;
       margin: 0 variables.$pm-base * 14;
+    }
+
+    @include mixin.desktop {
+      width: 40%;
     }
   }
 
