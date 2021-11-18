@@ -116,6 +116,7 @@
 
   &__location {
     margin: variables.$pm-base * 4 0;
+    font-style: normal;
 
     @include mixin.tablet {
       margin: variables.$pm-base * 6 0;

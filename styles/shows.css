@@ -51,7 +51,7 @@
   }
 }
 .footer__title {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 2rem;
   font-size: 1.5rem;
@@ -60,7 +60,7 @@
 }
 @media (min-width: 48rem) {
   .footer__title {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 700;
     line-height: 2.75rem;
     font-size: 2.25rem;
@@ -107,7 +107,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
@@ -120,7 +120,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -158,6 +158,7 @@
 }
 .footer__location {
   margin: 1rem 0;
+  font-style: normal;
 }
 @media (min-width: 48rem) {
   .footer__location {
@@ -168,7 +169,7 @@
   color: #ffffff;
 }
 .footer__copyright {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 1.25rem;
   font-size: 0.625rem;
@@ -177,7 +178,7 @@
 }
 @media (min-width: 48rem) {
   .footer__copyright {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -238,7 +239,7 @@
   }
 }
 .nav__link {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 600;
   line-height: 1.375rem;
   font-size: 0.875rem;
@@ -312,7 +313,7 @@
   }
 }
 .hero__album-name {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
@@ -321,7 +322,7 @@
 }
 @media (min-width: 48rem) {
   .hero__album-name {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 600;
     line-height: 2rem;
     font-size: 1.5rem;
@@ -334,7 +335,7 @@
   }
 }
 .hero__title {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 2rem;
   font-size: 1.5rem;
@@ -344,7 +345,7 @@
 }
 @media (min-width: 48rem) {
   .hero__title {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 700;
     line-height: 4.25rem;
     font-size: 3.75rem;
@@ -406,7 +407,7 @@
   }
 }
 .shows__title {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 2rem;
   font-size: 1.5rem;
@@ -417,7 +418,7 @@
 }
 @media (min-width: 48rem) {
   .shows__title {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 700;
     line-height: 2.75rem;
     font-size: 2.25rem;
@@ -439,7 +440,7 @@
 }
 @media (min-width: 48rem) {
   .shows__table {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 700;
     line-height: 2.75rem;
     font-size: 2.25rem;
@@ -505,7 +506,7 @@
   }
 }
 .shows__table-head {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 1.25rem;
   font-size: 0.625rem;
@@ -518,7 +519,7 @@
 }
 @media (min-width: 48rem) {
   .shows__table-head {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 700;
     line-height: 1.25rem;
     font-size: 0.75rem;
@@ -528,7 +529,7 @@
   }
 }
 .shows__table-date {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
@@ -540,7 +541,7 @@
   .shows__table-date {
     width: 24%;
     text-align: left;
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 400;
     line-height: 1.375rem;
     font-size: 0.875rem;
@@ -550,7 +551,7 @@
 }
 @media (min-width: 80rem) {
   .shows__table-date {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 400;
     line-height: 1.375rem;
     font-size: 0.875rem;
@@ -559,7 +560,7 @@
   }
 }
 .shows__table-data {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
@@ -570,7 +571,7 @@
   .shows__table-data {
     width: 24%;
     text-align: left;
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 400;
     line-height: 1.375rem;
     font-size: 0.875rem;
@@ -579,7 +580,7 @@
 }
 @media (min-width: 80rem) {
   .shows__table-data {
-    font-family: "Avenir";
+    font-family: "Avenir", serif;
     font-weight: 400;
     line-height: 1.375rem;
     font-size: 0.875rem;
@@ -593,7 +594,7 @@
   text-align: center;
   border-radius: 4px;
   color: #ffffff;
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 600;
   line-height: 1.375rem;
   font-size: 0.875rem;

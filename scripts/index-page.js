@@ -5,41 +5,49 @@ let commentList = [
     date: "02/17/2021",
     commentText:
       "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-    profileImg: "",
+    profileImg: "./assets/images/Mohan-muruge.jpg",
   },
   {
     name: "Emilie Beach",
     date: "01/09/2021",
     commentText:
       "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
-    profileImg: "",
+    profileImg: "./assets/images/Mohan-muruge.jpg",
   },
   {
     name: "Miles Acosta",
     date: "12/20/2020",
     commentText:
       "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
-    profileImg: "",
+    profileImg: "./assets/images/Mohan-muruge.jpg",
   },
 ];
 
+/****** showing comment ******/
 function displayComment(aComment) {
-  //create tags &  add class and content
+  //create tags + add class & content
   const card = document.createElement("div");
   card.classList.add("comment__card");
+
   const commentContainer = document.createElement("div");
   commentContainer.classList.add("comment__container");
+
   const infoContainer = document.createElement("div");
   infoContainer.classList.add("comment__info-container");
-  const profileImg = document.createElement("div");
+
+  const profileImg = document.createElement("img");
   profileImg.classList.add("comment__profile-image");
-  //use <img> + profileImg.src = aComment.profileImg in real case;
+  profileImg.src = aComment.profileImg;
+  profileImg.alt = "profile-image";
+
   const name = document.createElement("p");
   name.classList.add("comment__name");
   name.innerText = aComment.name;
+
   const date = document.createElement("p");
   date.classList.add("comment__date");
-  // time difference
+
+  // time difference for dive deeper
   let currentTime = new Date();
   const [month, day, year] = [
     currentTime.getMonth(),
@@ -71,7 +79,7 @@ function displayComment(aComment) {
   commentSection.append(card);
 }
 
-// loop through all the comments
+/****** loop through all the comments ******/
 function loopCommentList(arr) {
   for (let comment of arr) {
     displayComment(comment);
@@ -94,14 +102,12 @@ form.addEventListener("submit", (e) => {
   ];
   commentDate = `${month}/${day}/${year}`;
 
-  // add timestamp
-
   // add into list
   commentList.unshift({
     name: username,
     date: commentDate,
     commentText: userComment,
-    profileImg: "",
+    profileImg: "./assets/images/Mohan-muruge.jpg",
   });
 
   //clear the displayed comment
