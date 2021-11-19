@@ -132,7 +132,7 @@
     }
   }
 
-  &__table {
+  &__container {
     width: 100%;
     @include mixin.flexbox(column, center, flex-start);
     @include mixin.tablet {
@@ -151,7 +151,7 @@
     }
   }
 
-  &__table-row {
+  &__row {
     width: 100%;
     @include mixin.flexbox(column, center, flex-start);
     padding: variables.$pm-base * 4;
@@ -189,7 +189,7 @@
     }
   }
 
-  &__table-head {
+  &__head {
     @include mixin.mobil-button;
     color: variables.$primary-silver;
 
@@ -207,7 +207,7 @@
     }
   }
 
-  &__table-date {
+  &__date {
     @include mixin.mobil-text;
     color: variables.$primary-black;
     font-weight: 700;
@@ -226,8 +226,7 @@
     }
   }
 
-  &__table-data {
-    //     @extend &__table-data;
+  &__data {
     @include mixin.mobil-text;
     color: variables.$primary-black;
     margin: variables.$pm-base * 1.5 0;
@@ -243,7 +242,7 @@
     }
   }
 
-  &__table-btn {
+  &__btn {
     width: 100%;
     background-color: variables.$primary-black;
     padding: variables.$pm-base * 2;
