@@ -13,7 +13,7 @@
 
 // font for desktop and tablet
 @mixin page-header {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 4.25rem;
   font-size: 3.75rem;
@@ -21,21 +21,21 @@
 }
 
 @mixin section-header {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 2.75rem;
   font-size: 2.25rem;
 }
 
 @mixin subheader {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 600;
   line-height: 2rem;
   font-size: 1.5rem;
 }
 
 @mixin text {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 400;
   line-height: 1.375rem;
   font-size: 0.875rem;
@@ -43,7 +43,7 @@
 }
 
 @mixin footer-text {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -51,7 +51,7 @@
 }
 
 @mixin button {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 1.25rem;
   font-size: 0.75rem;
@@ -59,7 +59,7 @@
 
 // font for mobile
 @mixin mobil-header {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 2rem;
   font-size: 1.5rem;
@@ -67,7 +67,7 @@
 }
 
 @mixin mobil-subheader {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 600;
   line-height: 1.375rem;
   font-size: 0.875rem;
@@ -75,14 +75,14 @@
 }
 
 @mixin mobil-text {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
 }
 
 @mixin mobil-button {
-  font-family: "Avenir";
+  font-family: "Avenir", serif;
   font-weight: 700;
   line-height: 1.25rem;
   font-size: 0.625rem;
@@ -97,12 +97,6 @@
 
 @mixin tablet {
   @media (min-width: variables.$tablet) {
-    @content;
-  }
-}
-
-@mixin mobil {
-  @media (min-width: variables.$mobil) {
     @content;
   }
 }
