@@ -20,8 +20,12 @@
 
   &__info-container {
     width: 100%;
-    margin-bottom: variables.$pm-base * 10;
     @include mixin.flexbox(column, center, flex-start);
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, flex-start, stretch);
+      flex-wrap: wrap;
+    }
   }
 
   &__info-brand {
@@ -30,6 +34,12 @@
 
     @include mixin.tablet {
       @include mixin.flexbox(row, flex-start, stretch);
+      width: 80%;
+      order: 0;
+    }
+
+    @include mixin.desktop {
+      width: 85%;
     }
   }
 
@@ -63,20 +73,17 @@
     max-height: 1.25rem;
     max-width: 7.5rem;
     margin: variables.$pm-base * 4 0;
+    order: 4;
+    margin-top: variables.$pm-base * 14;
 
-    &--display1 {
-      display: none;
-
-      @include mixin.tablet {
-        display: inline;
-        margin-left: auto;
-      }
+    @include mixin.tablet {
+      width: 17%;
+      order: 1;
+      margin-top: variables.$pm-base * 4;
     }
 
-    &--display2 {
-      @include mixin.tablet {
-        display: none;
-      }
+    @include mixin.desktop {
+      width: 15%;
     }
   }
 
@@ -90,6 +97,7 @@
       @include mixin.flexbox(row, space-between, stretch);
       @include mixin.footer-text;
       color: variables.$primary-white;
+      order: 2;
     }
 
     @include mixin.desktop {
@@ -131,10 +139,13 @@
     @include mixin.mobil-button;
     font-weight: 400;
     color: variables.$primary-white;
+    order: 5;
 
     @include mixin.tablet {
       @include mixin.footer-text;
       letter-spacing: 0;
+      order: 3;
+      margin-top: variables.$pm-base * 12;
     }
   }
 }
