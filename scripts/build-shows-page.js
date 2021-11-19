@@ -32,24 +32,40 @@ const showList = [
 ];
 
 /***** create & display shows *******/
-//create & append new section
 const main = document.querySelector(".main");
-const section = document.createElement("section");
-section.classList.add("shows");
-main.append(section);
-// add section heading
-const title = document.createElement("h2");
-title.innerText = "Shows";
-title.classList.add("shows__title");
-section.append(title);
-// add shows container
-const showsContainer = document.createElement("div");
-showsContainer.classList.add("shows__container");
-section.append(showsContainer);
 
-// show header
-function addShowHeader() {
-  let headerList = ["date", "venue", "location", ""];
+function displayShows(showArr) {
+  let container = addContainer(showArr);
+  main.append(container);
+}
+
+function addContainer(showArr) {
+  const section = document.createElement("section");
+  section.classList.add("shows");
+
+  const title = document.createElement("h2");
+  title.innerText = "Shows";
+  title.classList.add("shows__title");
+  section.append(title);
+
+  const showsContainer = document.createElement("div");
+  showsContainer.classList.add("shows__container");
+  section.append(showsContainer);
+
+  let headerRow = addShowHeader(showArr);
+  showsContainer.append(headerRow);
+
+  showArr.forEach((show) => {
+    let showCard = addCardElement(show);
+    showsContainer.append(showCard);
+  });
+
+  return section;
+}
+
+function addShowHeader(showArr) {
+  let headerList = Object.keys(showArr[0]);
+  headerList[3] = "";
   const headerRow = document.createElement("div");
   headerRow.classList.add("shows__headline", "shows__headline--display");
   headerList.forEach((item) => {
@@ -58,16 +74,9 @@ function addShowHeader() {
     rowHead.classList.add("shows__head");
     headerRow.append(rowHead);
   });
-  showsContainer.append(headerRow);
+  return headerRow;
 }
-addShowHeader();
 
-// show card
-showList.forEach((show) => {
-  let showCard = addCardElement(show);
-  showsContainer.append(showCard);
-});
-// show card function
 function addCardElement(show) {
   let showCard = document.createElement("article");
   showCard.classList.add("shows__row");
@@ -75,9 +84,8 @@ function addCardElement(show) {
   const showInfoList = Object.keys(show);
   showInfoList.forEach(function (item) {
     const infoHead = document.createElement("p");
-    infoHead.classList.add("shows__head", "shows__head--display"); // shows__table-date --> shows__info-head
+    infoHead.classList.add("shows__head", "shows__head--display");
     infoHead.innerText = item.toUpperCase();
-    console.log(show.item);
     showCard.append(infoHead);
 
     const infoData = document.createElement("p");
@@ -97,6 +105,8 @@ function addCardElement(show) {
 
   return showCard;
 }
+
+displayShows(showList);
 
 /***** row hover & active effect *******/
 const rowList = document.querySelectorAll(".shows__row");

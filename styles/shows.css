@@ -414,6 +414,7 @@
 @media (min-width: 48rem) {
   .shows {
     padding: 2.25rem 1rem;
+    padding-bottom: 1rem;
   }
 }
 @media (min-width: 80rem) {
@@ -423,6 +424,7 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 3rem;
+    padding-bottom: 1.5rem;
   }
 }
 .shows__title {

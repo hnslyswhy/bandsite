@@ -108,11 +108,13 @@
 
   @include mixin.tablet {
     padding: variables.$pm-base * 9 variables.$pm-base * 4;
+    padding-bottom: variables.$pm-base * 4;
   }
 
   @include mixin.desktop {
     @include mixin.flexbox(row, space-between, flex-start);
     padding: variables.$pm-base * 12;
+    padding-bottom: variables.$pm-base * 6;
   }
 
   &__title {

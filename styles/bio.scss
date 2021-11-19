@@ -354,6 +354,7 @@
   @include mixin.mobil-text;
   color: variables.$primary-black;
   background-color: variables.$secondary-white;
+  margin-bottom: variables.$pm-base * 4;
 
   @include mixin.tablet {
     padding: variables.$pm-base * 4;
@@ -375,7 +376,6 @@
   width: 100%;
   padding: variables.$pm-base * 2 variables.$pm-base * 8;
   min-width: 9.375rem;
-  margin-top: variables.$pm-base * 2;
   @include mixin.mobil-text;
   color: variables.$primary-white;
   background-color: variables.$primary-black;

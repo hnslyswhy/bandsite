@@ -754,6 +754,7 @@
   font-size: 0.813rem;
   color: #323232;
   background-color: #fafafa;
+  margin-bottom: 1rem;
 }
 @media (min-width: 48rem) {
   #name,
@@ -777,7 +778,6 @@
   width: 100%;
   padding: 0.5rem 2rem;
   min-width: 9.375rem;
-  margin-top: 0.5rem;
   font-family: "Avenir", serif;
   font-weight: 400;
   line-height: 1.2rem;

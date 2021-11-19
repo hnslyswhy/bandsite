@@ -99,7 +99,7 @@ function addDate(aDate) {
   if (differenceInDays < 1) {
     date.innerText = `${aDate} (today)`;
   } else {
-    date.innerText = `${aDate} (${differenceInDays} days ago)`;
+    date.innerText = `${aDate} (${differenceInDays} days)`;
   }
 
   return date;
