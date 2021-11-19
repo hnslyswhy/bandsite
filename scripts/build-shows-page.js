@@ -48,10 +48,10 @@ showsContainer.classList.add("shows__container");
 section.append(showsContainer);
 
 // show header
-function createShowHeader() {
+function addShowHeader() {
   let headerList = ["date", "venue", "location", ""];
   const headerRow = document.createElement("div");
-  headerRow.classList.add("shows__row", "shows__row--display1");
+  headerRow.classList.add("shows__headline", "shows__headline--display");
   headerList.forEach((item) => {
     const rowHead = document.createElement("p");
     rowHead.innerText = item.toUpperCase();
@@ -60,14 +60,14 @@ function createShowHeader() {
   });
   showsContainer.append(headerRow);
 }
-createShowHeader();
+addShowHeader();
 
 // show card
 showList.forEach((show) => {
   let showCard = addCardElement(show);
   showsContainer.append(showCard);
 });
-
+// show card function
 function addCardElement(show) {
   let showCard = document.createElement("article");
   showCard.classList.add("shows__row");
@@ -100,17 +100,17 @@ function addCardElement(show) {
 
 /***** row hover & active effect *******/
 const rowList = document.querySelectorAll(".shows__row");
-for (let i = 1; i < rowList.length; i++) {
+rowList.forEach((row) => {
   //hover effect
-  rowList[i].addEventListener("mouseover", () => {
-    rowList[i].classList.add("shows__row--hover");
+  row.addEventListener("mouseover", () => {
+    row.classList.add("shows__row--hover");
   });
-  rowList[i].addEventListener("mouseleave", () => {
-    rowList[i].classList.remove("shows__row--hover");
+  row.addEventListener("mouseleave", () => {
+    row.classList.remove("shows__row--hover");
   });
 
   //active effect
-  rowList[i].addEventListener("click", function () {
+  row.addEventListener("click", function () {
     //check if any active row, if there is, remove its active effect
     rowList.forEach((row) => {
       row.classList.forEach((el) => {
@@ -119,88 +119,9 @@ for (let i = 1; i < rowList.length; i++) {
         }
       });
     });
-    // remvoe hover effect for the clicked row to avoid effect conflicts
-    rowList[i].classList.remove("shows__row--hover");
+    // remove hover effect for the clicked row to avoid effect conflicts
+    row.classList.remove("shows__row--hover");
     // add active effect
-    rowList[i].classList.add("shows__row--active");
+    row.classList.add("shows__row--active");
   });
-}
-
-/***** create & display shows *******/
-/*
-function displayShows(arr) {
-  // create tags, innerText, add class for container
-  const main = document.querySelector(".main");
-  const section = document.createElement("section");
-  section.classList.add("shows");
-
-  const title = document.createElement("h2");
-  title.innerText = "Shows";
-  title.classList.add("shows__title");
-
-  const table = document.createElement("article");
-  table.classList.add("shows__table");
-
-  const tableRow = document.createElement("div");
-  tableRow.classList.add("shows__table-row", "shows__table-row--display1");
-
-  const dateHead = document.createElement("p");
-  dateHead.innerText = "DATE";
-  dateHead.classList.add("shows__table-head");
-
-  const venueHead = document.createElement("p");
-  venueHead.innerText = "VENUE";
-  venueHead.classList.add("shows__table-head");
-
-  const locationHead = document.createElement("p");
-  locationHead.innerText = "LOCATION";
-  locationHead.classList.add("shows__table-head");
-
-  const btnHead = document.createElement("p");
-  btnHead.innerText = "";
-  btnHead.classList.add("shows__table-head");
-
-  // append tags
-  main.append(section);
-  section.append(title, table);
-  table.append(tableRow);
-  tableRow.append(dateHead, venueHead, locationHead, btnHead);
-
-  for (let i = 0; i < arr.length; i++) {
-    // create row content
-    const row = document.createElement("div");
-    row.classList.add("shows__table-row");
-    const data1 = document.createElement("p");
-    const p1 = document.createElement("p");
-    p1.classList.add("shows__table-head", "shows__table-head--display");
-    p1.innerText = "DATE";
-    data1.classList.add("shows__table-date");
-    data1.innerText = arr[i].date;
-
-    const p2 = document.createElement("p");
-    p2.classList.add("shows__table-head", "shows__table-head--display");
-    p2.innerText = "VENUE";
-    const data2 = document.createElement("p");
-    data2.classList.add("shows__table-data");
-    data2.innerText = arr[i].venue;
-
-    const p3 = document.createElement("p");
-    p3.classList.add("shows__table-head", "shows__table-head--display");
-    p3.innerText = "LOCATION";
-    const data3 = document.createElement("p");
-    data3.classList.add("shows__table-data");
-    data3.innerText = arr[i].location;
-
-    const data4 = document.createElement("a");
-    data4.classList.add("shows__table-btn");
-    data4.href = "#"; // need to be able to dynamically go to different page
-    data4.innerText = "BUY TICKETS";
-
-    // append
-    row.append(p1, data1, p2, data2, p3, data3, data4);
-    table.append(row);
-  }
-}
-
-displayShows(showList);
-*/
+});

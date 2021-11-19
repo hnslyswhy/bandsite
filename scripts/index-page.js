@@ -24,27 +24,64 @@ let commentList = [
 ];
 
 /****** showing comment ******/
+const commentSection = document.querySelector(".comment");
+
+function loopCommentList(arr) {
+  commentList.forEach((comment) => displayComment(comment));
+}
+
 function displayComment(aComment) {
-  //create tags + add class & content
-  const card = document.createElement("div");
+  let card = addCardElement(aComment);
+  commentSection.append(card);
+}
+
+function addCardElement(aComment) {
+  let card = document.createElement("article");
   card.classList.add("comment__card");
-
-  const commentContainer = document.createElement("div");
-  commentContainer.classList.add("comment__container");
-
-  const infoContainer = document.createElement("div");
-  infoContainer.classList.add("comment__info-container");
 
   const profileImg = document.createElement("img");
   profileImg.classList.add("comment__profile-image");
   profileImg.src = aComment.profileImg;
   profileImg.alt = "profile-image";
+  card.append(profileImg);
 
+  let commentContainer = addCommentContainer(aComment);
+  card.append(commentContainer);
+
+  return card;
+}
+
+function addCommentContainer(aComment) {
+  let commentContainer = document.createElement("div");
+  commentContainer.classList.add("comment__container");
+
+  let infoContainer = addInfoContainer(aComment);
+  commentContainer.append(infoContainer);
+
+  let commentContent = document.createElement("p");
+  commentContent.classList.add("comment__content");
+  commentContent.innerText = aComment.commentText;
+  commentContainer.append(commentContent);
+
+  return commentContainer;
+}
+
+function addInfoContainer(aComment) {
+  let infoContainer = document.createElement("div");
+  infoContainer.classList.add("comment__info-container");
   const name = document.createElement("p");
   name.classList.add("comment__name");
   name.innerText = aComment.name;
+  infoContainer.append(name);
 
-  const date = document.createElement("p");
+  let date = addDate(aComment.date);
+  infoContainer.append(date);
+
+  return infoContainer;
+}
+
+function addDate(aDate) {
+  let date = document.createElement("p");
   date.classList.add("comment__date");
 
   // time difference for dive deeper
@@ -55,36 +92,19 @@ function displayComment(aComment) {
     currentTime.getFullYear(),
   ];
   currentTime = `${month}/${day}/${year}`;
-  let differenceInTime = new Date(currentTime) - new Date(aComment.date);
+  let differenceInTime = new Date(currentTime) - new Date(aDate);
   let differenceInDays = parseInt(
     Math.floor(differenceInTime / (1000 * 3600 * 24))
   );
   if (differenceInDays < 1) {
-    date.innerText = `${aComment.date} (today)`;
+    date.innerText = `${aDate} (today)`;
   } else {
-    date.innerText = `${aComment.date} (${differenceInDays} days ago)`;
+    date.innerText = `${aDate} (${differenceInDays} days ago)`;
   }
-  const commentContent = document.createElement("p");
-  commentContent.classList.add("comment__content");
-  commentContent.innerText = aComment.commentText;
-  const commentSection = document.querySelector(".comment");
 
-  // append tags
-  infoContainer.append(name);
-  infoContainer.append(date);
-  commentContainer.append(infoContainer);
-  commentContainer.append(commentContent);
-  card.append(profileImg);
-  card.append(commentContainer);
-  commentSection.append(card);
+  return date;
 }
 
-/****** loop through all the comments ******/
-function loopCommentList(arr) {
-  for (let comment of arr) {
-    displayComment(comment);
-  }
-}
 loopCommentList(commentList);
 
 /****** form handling ******/
