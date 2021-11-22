@@ -125,7 +125,6 @@
 
     @include mixin.tablet {
       @include mixin.section-header;
-      margin-left: variables.$pm-base * 6;
     }
 
     @include mixin.desktop {

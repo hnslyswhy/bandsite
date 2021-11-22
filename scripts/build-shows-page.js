@@ -1,35 +1,19 @@
-const showList = [
-  {
-    date: "Mon Sept 06 2021",
-    venue: "Ronald Lane",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Tue Sept 21 2021",
-    venue: "Pier 3 East",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Fri Oct 15 2021",
-    venue: "View Lounge",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Sat Nov 06 2021",
-    venue: "Hyatt Agency",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Fri Nov 26 2021",
-    venue: "Moscow Center",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Wed Dec 15 2021",
-    venue: "Press Club",
-    location: "San Francisco, CA",
-  },
-];
+const baseUrl = "https://project-1-api.herokuapp.com/";
+const key = "7d1b181a-7bbf-4a08-a5e3-9682f3039544";
+let showList;
+async function getShowList() {
+  try {
+    const response = await axios.get(`${baseUrl}showdates/?api_key=${key}`);
+    showList = response.data;
+    console.log(showList);
+    displayShows(showList);
+    rowEffect();
+  } catch (error) {
+    console.log(error);
+    throw new Error("something went wrong"); // ? is this proper way to handler error
+  }
+}
+getShowList();
 
 /***** create & display shows *******/
 const main = document.querySelector(".main");
@@ -64,7 +48,7 @@ function addContainer(showArr) {
 }
 
 function addShowHeader(showArr) {
-  let headerList = Object.keys(showArr[0]);
+  let headerList = Object.keys(showArr[0]).filter((item) => item !== "id");
   headerList[3] = "";
   const headerRow = document.createElement("div");
   headerRow.classList.add("shows__headline", "shows__headline--display");
@@ -81,7 +65,8 @@ function addCardElement(show) {
   let showCard = document.createElement("article");
   showCard.classList.add("shows__row");
 
-  const showInfoList = Object.keys(show);
+  const showInfoList = Object.keys(show).filter((item) => item !== "id");
+  console.log(showInfoList);
   showInfoList.forEach(function (item) {
     const infoHead = document.createElement("p");
     infoHead.classList.add("shows__head", "shows__head--display");
@@ -91,10 +76,55 @@ function addCardElement(show) {
     const infoData = document.createElement("p");
     if (item === "date") {
       infoData.classList.add("shows__date");
+      let options = {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      };
+      let showDate = new Date(parseInt(show[item])).toUTCString(
+        "en-US",
+        options
+      );
+
+      let timeList = showDate
+        .split(",")
+        .join(" ")
+        .slice(0, 16)
+        .replace("Sep", "Sept");
+
+      infoData.innerText = timeList;
+
+      /*
+      let months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      let day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const [weekOfDay, showMonth, showDay, showYear] = [
+        showDate.getDay(),
+        showDate.getMonth(),
+        showDate.getDate(),
+        showDate.getFullYear(),
+      ];
+      infoData.innerText = `${day[weekOfDay + 1]} ${
+        months[showMonth - 1]
+      } ${showDay} ${showYear}`;
+      */
     } else {
       infoData.classList.add("shows__data");
+      infoData.innerText = show[item]; //its a variable, need use [] instead of .
     }
-    infoData.innerText = show[item]; //its a variable, need use [] instead of .
+
     showCard.append(infoData);
   });
 
@@ -106,32 +136,32 @@ function addCardElement(show) {
   return showCard;
 }
 
-displayShows(showList);
-
 /***** row hover & active effect *******/
-const rowList = document.querySelectorAll(".shows__row");
-rowList.forEach((row) => {
-  //hover effect
-  row.addEventListener("mouseover", () => {
-    row.classList.add("shows__row--hover");
-  });
-  row.addEventListener("mouseleave", () => {
-    row.classList.remove("shows__row--hover");
-  });
-
-  //active effect
-  row.addEventListener("click", function () {
-    //check if any active row, if there is, remove its active effect
-    rowList.forEach((row) => {
-      row.classList.forEach((el) => {
-        if (el === "shows__row--active") {
-          row.classList.remove("shows__row--active");
-        }
-      });
+function rowEffect() {
+  const rowList = document.querySelectorAll(".shows__row");
+  rowList.forEach((row) => {
+    //hover effect
+    row.addEventListener("mouseover", () => {
+      row.classList.add("shows__row--hover");
     });
-    // remove hover effect for the clicked row to avoid effect conflicts
-    row.classList.remove("shows__row--hover");
-    // add active effect
-    row.classList.add("shows__row--active");
+    row.addEventListener("mouseleave", () => {
+      row.classList.remove("shows__row--hover");
+    });
+
+    //active effect
+    row.addEventListener("click", function () {
+      //check if any active row, if there is, remove its active effect
+      rowList.forEach((row) => {
+        row.classList.forEach((el) => {
+          if (el === "shows__row--active") {
+            row.classList.remove("shows__row--active");
+          }
+        });
+      });
+      // remove hover effect for the clicked row to avoid effect conflicts
+      row.classList.remove("shows__row--hover");
+      // add active effect
+      row.classList.add("shows__row--active");
+    });
   });
-});
+}

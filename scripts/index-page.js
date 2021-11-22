@@ -1,33 +1,43 @@
-/****** comment handling ******/
-let commentList = [
-  {
-    name: "Connor Walton",
-    date: "02/17/2021",
-    commentText:
-      "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-    profileImg: "./assets/images/Mohan-muruge.jpg",
-  },
-  {
-    name: "Emilie Beach",
-    date: "01/09/2021",
-    commentText:
-      "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
-    profileImg: "./assets/images/Mohan-muruge.jpg",
-  },
-  {
-    name: "Miles Acosta",
-    date: "12/20/2020",
-    commentText:
-      "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
-    profileImg: "./assets/images/Mohan-muruge.jpg",
-  },
-];
+const baseUrl = "https://project-1-api.herokuapp.com/";
+const key = "7d1b181a-7bbf-4a08-a5e3-9682f3039544";
+
+let commentList;
+/*
+axios
+  .get(`${baseUrl}comments/?api_key=${key}`)
+  .then((response) => {
+    console.log(response);
+    commentList = response.data;
+    console.log(commentList);
+  })
+  .catch((e) => console.log(e));
+*/
+
+async function getCommentList() {
+  try {
+    const response = await axios.get(`${baseUrl}comments/?api_key=${key}`);
+    commentList = response.data;
+    commentList.sort(
+      (comment1, comment2) => comment2.timestamp - comment1.timestamp
+    );
+    console.log(commentList);
+    loopCommentList(commentList);
+    // dive deeper sprint3
+    addDeleteFunc();
+    addLikeFunc(commentList);
+  } catch (error) {
+    console.log(error);
+    throw new Error("something went wrong"); // ? is this proper way to handler error
+  }
+}
+
+getCommentList();
 
 /****** showing comment ******/
 const commentSection = document.querySelector(".comment");
 
 function loopCommentList(arr) {
-  commentList.forEach((comment) => displayComment(comment));
+  arr.forEach((comment) => displayComment(comment));
 }
 
 function displayComment(aComment) {
@@ -41,7 +51,7 @@ function addCardElement(aComment) {
 
   const profileImg = document.createElement("img");
   profileImg.classList.add("comment__profile-image");
-  profileImg.src = aComment.profileImg;
+  profileImg.src = "https://via.placeholder.com/150";
   profileImg.alt = "profile-image";
   card.append(profileImg);
 
@@ -60,8 +70,11 @@ function addCommentContainer(aComment) {
 
   let commentContent = document.createElement("p");
   commentContent.classList.add("comment__content");
-  commentContent.innerText = aComment.commentText;
+  commentContent.innerText = aComment.comment;
   commentContainer.append(commentContent);
+
+  let editContainer = addEditContainer(aComment);
+  commentContainer.append(editContainer);
 
   return commentContainer;
 }
@@ -74,7 +87,7 @@ function addInfoContainer(aComment) {
   name.innerText = aComment.name;
   infoContainer.append(name);
 
-  let date = addDate(aComment.date);
+  let date = addDate(aComment.timestamp);
   infoContainer.append(date);
 
   return infoContainer;
@@ -83,6 +96,14 @@ function addInfoContainer(aComment) {
 function addDate(aDate) {
   let date = document.createElement("p");
   date.classList.add("comment__date");
+  let postDate = new Date(aDate);
+  const [postMonth, postDay, postYear] = [
+    postDate.getMonth(),
+    postDate.getDate(),
+    postDate.getFullYear(),
+  ];
+
+  postDate = `${postMonth + 1}/${postDay}/${postYear}`;
 
   // time difference for dive deeper
   let currentTime = new Date();
@@ -91,54 +112,110 @@ function addDate(aDate) {
     currentTime.getDate(),
     currentTime.getFullYear(),
   ];
-  currentTime = `${month}/${day}/${year}`;
-  let differenceInTime = new Date(currentTime) - new Date(aDate);
+  currentTime = `${month + 1}/${day}/${year}`;
+  let differenceInTime = new Date(currentTime) - new Date(postDate);
   let differenceInDays = parseInt(
     Math.floor(differenceInTime / (1000 * 3600 * 24))
   );
   if (differenceInDays < 1) {
-    date.innerText = `${aDate} (today)`;
+    date.innerText = `${postDate} (today)`;
   } else {
-    date.innerText = `${aDate} (${differenceInDays} days)`;
+    date.innerText = `${postDate} (${differenceInDays} days)`;
   }
 
   return date;
 }
 
-loopCommentList(commentList);
+// dive deeper sprint3
+function addEditContainer(aComment) {
+  let editContainer = document.createElement("div");
+  editContainer.classList.add("comment__edit-container");
+
+  let likesContainer = document.createElement("span");
+  editContainer.append(likesContainer);
+
+  let likesIcon = document.createElement("img");
+  likesIcon.src = "./assets/icons/heart-regular.svg";
+  likesIcon.classList.add("comment__edit-like");
+  likesContainer.append(likesIcon);
+  likesIcon.id = `i${aComment.id}`;
+
+  let likesCount = document.createElement("span");
+  likesCount.innerText = aComment.likes;
+  likesContainer.append(likesCount);
+
+  let deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("comment__edit-delete");
+  deleteBtn.id = aComment.id;
+  deleteBtn.innerText = "delete";
+  editContainer.append(deleteBtn);
+
+  return editContainer;
+}
+
+/****** dive deeper sprint3 - delete handler ******/
+function addDeleteFunc() {
+  const deleteList = document.querySelectorAll(".comment__edit-delete");
+  deleteList.forEach((btn) => {
+    btn.addEventListener("click", async function (e) {
+      try {
+        await axios.delete(`${baseUrl}comments/${this.id}?api_key=${key}`);
+        window.location.reload(); // or delete that card ?
+      } catch (e) {
+        throw new Error("something went wrong"); // or console.log(e)?
+      }
+    });
+  });
+}
+
+function addLikeFunc(arr) {
+  const likeList = document.querySelectorAll(".comment__edit-like");
+  likeList.forEach((icon) => {
+    icon.addEventListener("click", async function (e) {
+      let target = arr.find((comment) => (comment.id = this.id.slice(1)));
+      console.log(target);
+      let count = target.likes + 1;
+      console.log(count);
+      try {
+        await axios({
+          method: "put",
+          url: `${baseUrl}comments/${this.id.slice(1)}/like?api_key=${key}`,
+          data: {
+            likes: count,
+          },
+        });
+        window.location.reload(); // or delete that card ?
+      } catch (e) {
+        throw new Error("something went wrong"); // or console.log(e)?
+      }
+    });
+  });
+}
 
 /****** form handling ******/
 const form = document.querySelector(".form");
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
   //get new comment components from form input
   const username = e.target[0].value;
   const userComment = e.target[1].value; // or can give input a name attribute and then e.target.nameChosen.value
-  let commentDate = new Date();
-  const [month, day, year] = [
-    commentDate.getMonth(),
-    commentDate.getDate(),
-    commentDate.getFullYear(),
-  ];
-  commentDate = `${month}/${day}/${year}`;
-
-  // add into list
-  commentList.unshift({
-    name: username,
-    date: commentDate,
-    commentText: userComment,
-    profileImg: "./assets/images/Mohan-muruge.jpg",
-  });
-
-  //clear the displayed comment
-  const cards = document.querySelectorAll(".comment__card");
-  for (let card of cards) {
-    card.remove();
+  try {
+    await axios({
+      method: "post",
+      url: `${baseUrl}comments/?api_key=${key}`,
+      headers: { "Content-Type": "application/json" },
+      data: {
+        name: username,
+        comment: userComment,
+      },
+    });
+    window.location.reload();
+  } catch (error) {
+    throw new Error("something went wrong"); // or console.log(e) ?
   }
-
-  // show new commentList
-  loopCommentList(commentList);
 
   //reset the form
   e.target.reset(); // can also do by select the input, and then nameInput.value = ""; commentInput.value = "";
+
+  loopCommentList(commentList);
 });
