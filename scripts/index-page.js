@@ -33,16 +33,27 @@ async function getCommentList() {
 
 getCommentList();
 
-/****** showing comment ******/
-const commentSection = document.querySelector(".comment");
-
+/****** show comment ******/
 function loopCommentList(arr) {
   arr.forEach((comment) => displayComment(comment));
 }
 
 function displayComment(aComment) {
+  const commentSection = document.querySelector(".comment");
   let card = addCardElement(aComment);
   commentSection.append(card);
+}
+
+function clearDisplay() {
+  const commentSection = document.querySelector(".comment");
+  console.log(commentSection.lastChild.nodeName);
+  while (
+    commentSection.hasChildNodes() &&
+    commentSection.lastChild.nodeName === "ARTICLE"
+  ) {
+    console.log(commentSection.lastChild);
+    commentSection.removeChild(commentSection.lastChild);
+  }
 }
 
 function addCardElement(aComment) {
@@ -96,23 +107,24 @@ function addInfoContainer(aComment) {
 function addDate(aDate) {
   let date = document.createElement("p");
   date.classList.add("comment__date");
+
   let postDate = new Date(aDate);
-  const [postMonth, postDay, postYear] = [
-    postDate.getMonth(),
-    postDate.getDate(),
-    postDate.getFullYear(),
+  let [postMonth, postDay, postYear] = [
+    postDate.getUTCMonth(),
+    postDate.getUTCDate(),
+    postDate.getUTCFullYear(),
   ];
+  postMonth = postMonth + 1;
+  if (postMonth + 1 < 10) {
+    postMonth = `0${postMonth.toString()}`;
+  }
+  if (postDay < 10) {
+    postDay = `0${postDay.toString()}`;
+  }
+  postDate = `${postMonth}/${postDay}/${postYear}`;
 
-  postDate = `${postMonth + 1}/${postDay}/${postYear}`;
-
-  // time difference for dive deeper
-  let currentTime = new Date();
-  const [month, day, year] = [
-    currentTime.getMonth(),
-    currentTime.getDate(),
-    currentTime.getFullYear(),
-  ];
-  currentTime = `${month + 1}/${day}/${year}`;
+  // showing time difference for dive deeper sprint2
+  let currentTime = new Date().toUTCString();
   let differenceInTime = new Date(currentTime) - new Date(postDate);
   let differenceInDays = parseInt(
     Math.floor(differenceInTime / (1000 * 3600 * 24))
@@ -126,25 +138,53 @@ function addDate(aDate) {
   return date;
 }
 
-// dive deeper sprint3
+/****** form handling ******/
+const form = document.querySelector(".form");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  //get new comment components from form input
+  const username = e.target.name.value;
+  const userComment = e.target.comment.value;
+  try {
+    await axios({
+      method: "post",
+      url: `${baseUrl}comments/?api_key=${key}`,
+      headers: { "Content-Type": "application/json" },
+      data: {
+        name: username,
+        comment: userComment,
+      },
+    });
+  } catch (error) {
+    throw new Error("something went wrong"); // or console.log(e) ?
+  }
+  //reset the form
+  e.target.reset();
+  // reload the comments window.location.reload();
+  clearDisplay();
+  getCommentList();
+});
+
+/****** dive deeper sprint3 - likes & delete  ******/
 function addEditContainer(aComment) {
   let editContainer = document.createElement("div");
   editContainer.classList.add("comment__edit-container");
 
-  let likesContainer = document.createElement("span");
+  let likesContainer = document.createElement("div");
   editContainer.append(likesContainer);
 
-  let likesIcon = document.createElement("img");
-  likesIcon.src = "./assets/icons/heart-regular.svg";
+  let likesIcon = document.createElement("span");
   likesIcon.classList.add("comment__edit-like");
   likesContainer.append(likesIcon);
+  likesIcon.innerHTML = "❤️";
   likesIcon.id = `i${aComment.id}`;
 
   let likesCount = document.createElement("span");
+  likesCount.classList.add("comment__edit-count");
   likesCount.innerText = aComment.likes;
   likesContainer.append(likesCount);
 
-  let deleteBtn = document.createElement("button");
+  let deleteBtn = document.createElement("span");
   deleteBtn.classList.add("comment__edit-delete");
   deleteBtn.id = aComment.id;
   deleteBtn.innerText = "delete";
@@ -160,7 +200,9 @@ function addDeleteFunc() {
     btn.addEventListener("click", async function (e) {
       try {
         await axios.delete(`${baseUrl}comments/${this.id}?api_key=${key}`);
-        window.location.reload(); // or delete that card ?
+        //another way to do it, refresh the page. window.location.reload();
+        clearDisplay();
+        getCommentList();
       } catch (e) {
         throw new Error("something went wrong"); // or console.log(e)?
       }
@@ -168,6 +210,7 @@ function addDeleteFunc() {
   });
 }
 
+/****** dive deeper sprint3 - likes handler ******/
 function addLikeFunc(arr) {
   const likeList = document.querySelectorAll(".comment__edit-like");
   likeList.forEach((icon) => {
@@ -184,38 +227,12 @@ function addLikeFunc(arr) {
             likes: count,
           },
         });
-        window.location.reload(); // or delete that card ?
+        //another way refresh the page. window.location.reload();
+        clearDisplay();
+        getCommentList();
       } catch (e) {
         throw new Error("something went wrong"); // or console.log(e)?
       }
     });
   });
 }
-
-/****** form handling ******/
-const form = document.querySelector(".form");
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  //get new comment components from form input
-  const username = e.target[0].value;
-  const userComment = e.target[1].value; // or can give input a name attribute and then e.target.nameChosen.value
-  try {
-    await axios({
-      method: "post",
-      url: `${baseUrl}comments/?api_key=${key}`,
-      headers: { "Content-Type": "application/json" },
-      data: {
-        name: username,
-        comment: userComment,
-      },
-    });
-    window.location.reload();
-  } catch (error) {
-    throw new Error("something went wrong"); // or console.log(e) ?
-  }
-
-  //reset the form
-  e.target.reset(); // can also do by select the input, and then nameInput.value = ""; commentInput.value = "";
-
-  loopCommentList(commentList);
-});

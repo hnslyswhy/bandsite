@@ -66,7 +66,6 @@ function addCardElement(show) {
   showCard.classList.add("shows__row");
 
   const showInfoList = Object.keys(show).filter((item) => item !== "id");
-  console.log(showInfoList);
   showInfoList.forEach(function (item) {
     const infoHead = document.createElement("p");
     infoHead.classList.add("shows__head", "shows__head--display");
@@ -86,40 +85,16 @@ function addCardElement(show) {
         "en-US",
         options
       );
-
-      let timeList = showDate
-        .split(",")
-        .join(" ")
-        .slice(0, 16)
-        .replace("Sep", "Sept");
-
+      let timeList = [showDate.split(",")[0]].concat(
+        showDate.split(",")[1].split(" ")
+      );
+      let switchMonth = timeList[3];
+      let switchDay = timeList[2];
+      timeList[2] = switchMonth;
+      timeList[3] = switchDay;
+      console.log(timeList);
+      timeList = timeList.join(" ").slice(0, 16).replace("Sep", "Sept");
       infoData.innerText = timeList;
-
-      /*
-      let months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-      let day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const [weekOfDay, showMonth, showDay, showYear] = [
-        showDate.getDay(),
-        showDate.getMonth(),
-        showDate.getDate(),
-        showDate.getFullYear(),
-      ];
-      infoData.innerText = `${day[weekOfDay + 1]} ${
-        months[showMonth - 1]
-      } ${showDay} ${showYear}`;
-      */
     } else {
       infoData.classList.add("shows__data");
       infoData.innerText = show[item]; //its a variable, need use [] instead of .
