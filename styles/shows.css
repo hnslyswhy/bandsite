@@ -636,4 +636,14 @@
 }
 .shows__btn:hover, .shows__btn:active {
   cursor: pointer;
+}
+
+.error {
+  margin: 1rem;
+  text-align: center;
+  font-family: "Avenir", serif;
+  font-weight: 400;
+  line-height: 1.375rem;
+  font-size: 0.875rem;
+  color: #afafaf;
 }/*# sourceMappingURL=shows.css.map */

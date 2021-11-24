@@ -1,17 +1,11 @@
 const baseUrl = "https://project-1-api.herokuapp.com/";
 const key = "7d1b181a-7bbf-4a08-a5e3-9682f3039544";
 
+/* to find the function efficiently, use command + click (mac) on that function  */
+
+/****** get comments ******/
 let commentList;
-/*
-axios
-  .get(`${baseUrl}comments/?api_key=${key}`)
-  .then((response) => {
-    console.log(response);
-    commentList = response.data;
-    console.log(commentList);
-  })
-  .catch((e) => console.log(e));
-*/
+const commentSection = document.querySelector(".comment");
 
 async function getCommentList() {
   try {
@@ -20,14 +14,12 @@ async function getCommentList() {
     commentList.sort(
       (comment1, comment2) => comment2.timestamp - comment1.timestamp
     );
-    console.log(commentList);
+    clearDisplay();
     loopCommentList(commentList);
-    // dive deeper sprint3
-    addDeleteFunc();
-    addLikeFunc(commentList);
   } catch (error) {
-    console.log(error);
-    throw new Error("something went wrong"); // ? is this proper way to handler error
+    let message = displayErrorMessage();
+    commentSection.append(message);
+    //throw new Error("something went wrong"); // will be handled by the function using this function
   }
 }
 
@@ -39,21 +31,8 @@ function loopCommentList(arr) {
 }
 
 function displayComment(aComment) {
-  const commentSection = document.querySelector(".comment");
   let card = addCardElement(aComment);
   commentSection.append(card);
-}
-
-function clearDisplay() {
-  const commentSection = document.querySelector(".comment");
-  console.log(commentSection.lastChild.nodeName);
-  while (
-    commentSection.hasChildNodes() &&
-    commentSection.lastChild.nodeName === "ARTICLE"
-  ) {
-    console.log(commentSection.lastChild);
-    commentSection.removeChild(commentSection.lastChild);
-  }
 }
 
 function addCardElement(aComment) {
@@ -107,7 +86,7 @@ function addInfoContainer(aComment) {
 function addDate(aDate) {
   let date = document.createElement("p");
   date.classList.add("comment__date");
-
+  //format time
   let postDate = new Date(aDate);
   let [postMonth, postDay, postYear] = [
     postDate.getUTCMonth(),
@@ -122,7 +101,6 @@ function addDate(aDate) {
     postDay = `0${postDay.toString()}`;
   }
   postDate = `${postMonth}/${postDay}/${postYear}`;
-
   // showing time difference for dive deeper sprint2
   let currentTime = new Date().toUTCString();
   let differenceInTime = new Date(currentTime) - new Date(postDate);
@@ -142,7 +120,6 @@ function addDate(aDate) {
 const form = document.querySelector(".form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  //get new comment components from form input
   const username = e.target.name.value;
   const userComment = e.target.comment.value;
   try {
@@ -155,15 +132,29 @@ form.addEventListener("submit", async (e) => {
         comment: userComment,
       },
     });
+    e.target.reset(); //form.reset()
+    getCommentList();
   } catch (error) {
-    throw new Error("something went wrong"); // or console.log(e) ?
+    e.target.reset();
+    clearDisplay();
+    let message = displayErrorMessage();
+    commentSection.append(message);
   }
-  //reset the form
-  e.target.reset();
-  // reload the comments window.location.reload();
-  clearDisplay();
-  getCommentList();
 });
+
+/****** clear out current displayed comments ******/
+function clearDisplay() {
+  // if only have article as children, can just set innerHTML = ""
+  const commentSection = document.querySelector(".comment");
+  console.log(commentSection.lastChild.nodeName);
+  while (
+    commentSection.hasChildNodes() &&
+    commentSection.lastChild.nodeName === "ARTICLE"
+  ) {
+    console.log(commentSection.lastChild);
+    commentSection.removeChild(commentSection.lastChild);
+  }
+}
 
 /****** dive deeper sprint3 - likes & delete  ******/
 function addEditContainer(aComment) {
@@ -173,66 +164,62 @@ function addEditContainer(aComment) {
   let likesContainer = document.createElement("div");
   editContainer.append(likesContainer);
 
-  let likesIcon = document.createElement("span");
-  likesIcon.classList.add("comment__edit-like");
-  likesContainer.append(likesIcon);
-  likesIcon.innerHTML = "❤️";
-  likesIcon.id = `i${aComment.id}`;
-
   let likesCount = document.createElement("span");
   likesCount.classList.add("comment__edit-count");
   likesCount.innerText = aComment.likes;
-  likesContainer.append(likesCount);
+
+  let likesIcon = document.createElement("span");
+  likesIcon.classList.add("comment__edit-like");
+  likesContainer.append(likesIcon, likesCount);
+  likesIcon.innerHTML = "❤️";
+  likesIcon.addEventListener("click", function () {
+    addLikeFunc(aComment); // add eventListener to the tagObj directly
+  });
 
   let deleteBtn = document.createElement("span");
   deleteBtn.classList.add("comment__edit-delete");
   deleteBtn.id = aComment.id;
   deleteBtn.innerText = "delete";
+  deleteBtn.addEventListener("click", function () {
+    addDeleteFunc(aComment);
+  });
   editContainer.append(deleteBtn);
 
   return editContainer;
 }
 
-/****** dive deeper sprint3 - delete handler ******/
-function addDeleteFunc() {
-  const deleteList = document.querySelectorAll(".comment__edit-delete");
-  deleteList.forEach((btn) => {
-    btn.addEventListener("click", async function (e) {
-      try {
-        await axios.delete(`${baseUrl}comments/${this.id}?api_key=${key}`);
-        //another way to do it, refresh the page. window.location.reload();
-        clearDisplay();
-        getCommentList();
-      } catch (e) {
-        throw new Error("something went wrong"); // or console.log(e)?
-      }
-    });
-  });
+/****** delete handler ******/
+async function addDeleteFunc(aComment) {
+  try {
+    await axios.delete(`${baseUrl}comments/${aComment.id}?api_key=${key}`);
+    getCommentList();
+  } catch (e) {
+    throw new Error("something went wrong");
+  }
 }
 
-/****** dive deeper sprint3 - likes handler ******/
-function addLikeFunc(arr) {
-  const likeList = document.querySelectorAll(".comment__edit-like");
-  likeList.forEach((icon) => {
-    icon.addEventListener("click", async function (e) {
-      let target = arr.find((comment) => (comment.id = this.id.slice(1)));
-      console.log(target);
-      let count = target.likes + 1;
-      console.log(count);
-      try {
-        await axios({
-          method: "put",
-          url: `${baseUrl}comments/${this.id.slice(1)}/like?api_key=${key}`,
-          data: {
-            likes: count,
-          },
-        });
-        //another way refresh the page. window.location.reload();
-        clearDisplay();
-        getCommentList();
-      } catch (e) {
-        throw new Error("something went wrong"); // or console.log(e)?
-      }
+/****** likes handler ******/
+async function addLikeFunc(aComment) {
+  let count = aComment.likes + 1;
+  console.log(count);
+  try {
+    await axios({
+      method: "put",
+      url: `${baseUrl}comments/${aComment.id}/like?api_key=${key}`,
+      data: {
+        likes: count,
+      },
     });
-  });
+    getCommentList();
+  } catch (e) {
+    throw new Error("something went wrong"); // or console.log(e)?
+  }
+}
+
+/****** show error message ******/
+function displayErrorMessage() {
+  const message = document.createElement("p");
+  message.innerText = "Something Went Wrong. Try Again Later.";
+  message.classList.add("error");
+  return message;
 }
