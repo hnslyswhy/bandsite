@@ -7,6 +7,21 @@ const key = "7d1b181a-7bbf-4a08-a5e3-9682f3039544";
 let showList;
 const main = document.querySelector(".main");
 
+function getShowList() {
+  axios
+    .get(`${baseUrl}showdates/?api_key=${key}`)
+    .then((response) => {
+      showList = response.data;
+      displayShows(showList);
+      rowEffect();
+    })
+    .catch((error) => {
+      console.log(error);
+      let message = displayErrorMessage();
+      main.append(message);
+    });
+}
+/*  original code using async/await
 async function getShowList() {
   try {
     const response = await axios.get(`${baseUrl}showdates/?api_key=${key}`);
@@ -17,7 +32,7 @@ async function getShowList() {
     let message = displayErrorMessage();
     main.append(message);
   }
-}
+} */
 getShowList();
 
 /***** create & display shows *******/

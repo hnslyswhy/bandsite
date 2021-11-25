@@ -7,6 +7,26 @@ const key = "7d1b181a-7bbf-4a08-a5e3-9682f3039544";
 let commentList;
 const commentSection = document.querySelector(".comment");
 
+function getCommentList() {
+  axios
+    .get(`${baseUrl}comments/?api_key=${key}`)
+    .then((response) => {
+      commentList = response.data;
+      commentList.sort(
+        (comment1, comment2) => comment2.timestamp - comment1.timestamp
+      );
+      clearDisplay();
+      loopCommentList(commentList);
+    })
+    .catch((error) => {
+      console.log(error);
+      let message = displayErrorMessage();
+      commentSection.append(message);
+      //throw new Error("something went wrong"); // will be handled by the function using this function
+    });
+}
+
+/*  original code using async/await
 async function getCommentList() {
   try {
     const response = await axios.get(`${baseUrl}comments/?api_key=${key}`);
@@ -21,8 +41,7 @@ async function getCommentList() {
     commentSection.append(message);
     //throw new Error("something went wrong"); // will be handled by the function using this function
   }
-}
-
+} */
 getCommentList();
 
 /****** show comment ******/
@@ -189,31 +208,33 @@ function addEditContainer(aComment) {
 }
 
 /****** delete handler ******/
-async function addDeleteFunc(aComment) {
-  try {
-    await axios.delete(`${baseUrl}comments/${aComment.id}?api_key=${key}`);
-    getCommentList();
-  } catch (e) {
-    throw new Error("something went wrong");
-  }
+function addDeleteFunc(aComment) {
+  axios
+    .delete(`${baseUrl}comments/${aComment.id}?api_key=${key}`)
+    .then(() => {
+      getCommentList();
+    })
+    .catch((e) => {
+      throw new Error("something went wrong");
+    });
 }
 
 /****** likes handler ******/
-async function addLikeFunc(aComment) {
+function addLikeFunc(aComment) {
   let count = aComment.likes + 1;
-  console.log(count);
-  try {
-    await axios({
-      method: "put",
-      url: `${baseUrl}comments/${aComment.id}/like?api_key=${key}`,
-      data: {
-        likes: count,
-      },
+  axios({
+    method: "put",
+    url: `${baseUrl}comments/${aComment.id}/like?api_key=${key}`,
+    data: {
+      likes: count,
+    },
+  })
+    .then(() => {
+      getCommentList();
+    })
+    .catch((e) => {
+      throw new Error("something went wrong"); // or console.log(e)?
     });
-    getCommentList();
-  } catch (e) {
-    throw new Error("something went wrong"); // or console.log(e)?
-  }
 }
 
 /****** show error message ******/
