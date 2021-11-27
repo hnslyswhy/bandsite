@@ -25,23 +25,6 @@ function getCommentList() {
       //throw new Error("something went wrong"); // will be handled by the function using this function
     });
 }
-
-/*  original code using async/await
-async function getCommentList() {
-  try {
-    const response = await axios.get(`${baseUrl}comments/?api_key=${key}`);
-    commentList = response.data;
-    commentList.sort(
-      (comment1, comment2) => comment2.timestamp - comment1.timestamp
-    );
-    clearDisplay();
-    loopCommentList(commentList);
-  } catch (error) {
-    let message = displayErrorMessage();
-    commentSection.append(message);
-    //throw new Error("something went wrong"); // will be handled by the function using this function
-  }
-} */
 getCommentList();
 
 /****** show comment ******/
@@ -50,11 +33,11 @@ function loopCommentList(arr) {
 }
 
 function displayComment(aComment) {
-  let card = addCardElement(aComment);
+  let card = createCardElement(aComment);
   commentSection.append(card);
 }
 
-function addCardElement(aComment) {
+function createCardElement(aComment) {
   let card = document.createElement("article");
   card.classList.add("comment__card");
 
@@ -64,17 +47,17 @@ function addCardElement(aComment) {
   profileImg.alt = "profile-image";
   card.append(profileImg);
 
-  let commentContainer = addCommentContainer(aComment);
+  let commentContainer = createCommentContainer(aComment);
   card.append(commentContainer);
 
   return card;
 }
 
-function addCommentContainer(aComment) {
+function createCommentContainer(aComment) {
   let commentContainer = document.createElement("div");
   commentContainer.classList.add("comment__container");
 
-  let infoContainer = addInfoContainer(aComment);
+  let infoContainer = createInfoContainer(aComment);
   commentContainer.append(infoContainer);
 
   let commentContent = document.createElement("p");
@@ -82,13 +65,13 @@ function addCommentContainer(aComment) {
   commentContent.innerText = aComment.comment;
   commentContainer.append(commentContent);
 
-  let editContainer = addEditContainer(aComment);
+  let editContainer = createEditContainer(aComment);
   commentContainer.append(editContainer);
 
   return commentContainer;
 }
 
-function addInfoContainer(aComment) {
+function createInfoContainer(aComment) {
   let infoContainer = document.createElement("div");
   infoContainer.classList.add("comment__info-container");
   const name = document.createElement("p");
@@ -96,61 +79,55 @@ function addInfoContainer(aComment) {
   name.innerText = aComment.name;
   infoContainer.append(name);
 
-  let date = addDate(aComment.timestamp);
+  let date = createDate(aComment.timestamp);
   infoContainer.append(date);
 
   return infoContainer;
 }
 
-function addDate(aDate) {
+function createDate(aDate) {
   let date = document.createElement("p");
   date.classList.add("comment__date");
   //format time
   let postDate = new Date(aDate);
-  let [postMonth, postDay, postYear] = [
-    postDate.getUTCMonth(),
-    postDate.getUTCDate(),
-    postDate.getUTCFullYear(),
-  ];
-  postMonth = postMonth + 1;
-  if (postMonth + 1 < 10) {
-    postMonth = `0${postMonth.toString()}`;
-  }
-  if (postDay < 10) {
-    postDay = `0${postDay.toString()}`;
-  }
+  let postMonth = postDate.getUTCMonth();
+  let postDay = postDate.getUTCDate();
+  let postYear = postDate.getUTCFullYear();
+  postMonth = (postMonth + 1).toString().padStart(2, "0");
+  postDay = postDay.toString().padStart(2, "0"); //str.padStart(targetLength, padString)
   postDate = `${postMonth}/${postDay}/${postYear}`;
-  // showing time difference for dive deeper sprint2
+  let differenceInDays = getTimeDifference(postDate);
+  date.innerText = `${postDate} (${differenceInDays} days)`;
+  return date;
+}
+
+// showing time difference for dive deeper sprint2
+function getTimeDifference(aDate) {
   let currentTime = new Date().toUTCString();
-  let differenceInTime = new Date(currentTime) - new Date(postDate);
+  let differenceInTime = new Date(currentTime) - new Date(aDate);
   let differenceInDays = parseInt(
     Math.floor(differenceInTime / (1000 * 3600 * 24))
   );
   if (differenceInDays < 1) {
-    date.innerText = `${postDate} (today)`;
+    return "today";
   } else {
-    date.innerText = `${postDate} (${differenceInDays} days)`;
+    return `${differenceInDays} days`;
   }
-
-  return date;
 }
 
 /****** form handling ******/
 const form = document.querySelector(".form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const username = e.target.name.value;
-  const userComment = e.target.comment.value;
+  const name = e.target.name.value;
+  const comment = e.target.comment.value;
   try {
     await axios({
       method: "post",
       url: `${baseUrl}comments/?api_key=${key}`,
       headers: { "Content-Type": "application/json" },
-      data: {
-        name: username,
-        comment: userComment,
-      },
-    });
+      data: { name, comment },
+    }); //short hand using the variable as key, its value will be default as the key's value
     e.target.reset(); //form.reset()
     getCommentList();
   } catch (error) {
@@ -165,7 +142,7 @@ form.addEventListener("submit", async (e) => {
 function clearDisplay() {
   // if only have article as children, can just set innerHTML = ""
   const commentSection = document.querySelector(".comment");
-  console.log(commentSection.lastChild.nodeName);
+  //console.log(commentSection.lastChild.nodeName);
   while (
     commentSection.hasChildNodes() &&
     commentSection.lastChild.nodeName === "ARTICLE"
@@ -176,7 +153,7 @@ function clearDisplay() {
 }
 
 /****** dive deeper sprint3 - likes & delete  ******/
-function addEditContainer(aComment) {
+function createEditContainer(aComment) {
   let editContainer = document.createElement("div");
   editContainer.classList.add("comment__edit-container");
 
@@ -192,7 +169,7 @@ function addEditContainer(aComment) {
   likesContainer.append(likesIcon, likesCount);
   likesIcon.innerHTML = "❤️";
   likesIcon.addEventListener("click", function () {
-    addLikeFunc(aComment); // add eventListener to the tagObj directly
+    handleLike(aComment); // add eventListener to the tagObj directly
   });
 
   let deleteBtn = document.createElement("span");
@@ -200,7 +177,7 @@ function addEditContainer(aComment) {
   deleteBtn.id = aComment.id;
   deleteBtn.innerText = "delete";
   deleteBtn.addEventListener("click", function () {
-    addDeleteFunc(aComment);
+    handleDelete(aComment);
   });
   editContainer.append(deleteBtn);
 
@@ -208,30 +185,24 @@ function addEditContainer(aComment) {
 }
 
 /****** delete handler ******/
-function addDeleteFunc(aComment) {
+function handleDelete(aComment) {
   axios
     .delete(`${baseUrl}comments/${aComment.id}?api_key=${key}`)
-    .then(() => {
-      getCommentList();
-    })
+    .then(() => getCommentList())
     .catch((e) => {
       throw new Error("something went wrong");
     });
 }
 
 /****** likes handler ******/
-function addLikeFunc(aComment) {
+function handleLike(aComment) {
   let count = aComment.likes + 1;
   axios({
     method: "put",
     url: `${baseUrl}comments/${aComment.id}/like?api_key=${key}`,
-    data: {
-      likes: count,
-    },
+    data: { likes: count },
   })
-    .then(() => {
-      getCommentList();
-    })
+    .then(() => getCommentList())
     .catch((e) => {
       throw new Error("something went wrong"); // or console.log(e)?
     });

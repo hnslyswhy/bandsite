@@ -483,8 +483,6 @@
 }
 
 .error {
-  margin: variables.$pm-base * 4;
-  text-align: center;
+  @include mixin.error;
   @include mixin.text;
-  color: variables.$primary-silver;
 }
